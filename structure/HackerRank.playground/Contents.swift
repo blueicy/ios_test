@@ -27,3 +27,16 @@ func staircase(n: Int) -> Void {
 }
 
 staircase(n: 6)
+
+
+func miniMaxSum(arr: [Int]) -> Void {
+    var arrSort = arr.sorted(by: {$0 < $1})
+    
+        let min = arrSort[0] + arrSort[1] + arrSort[2] + arrSort[3]
+        let max = arrSort[1] + arrSort[2] + arrSort[3] + arrSort[4]
+    // for index in 0..<arrSort.count {
+        print(String(min) + " " + String(max))
+  
+    // }
+
+}
