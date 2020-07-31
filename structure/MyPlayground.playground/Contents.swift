@@ -2,7 +2,7 @@ import UIKit
 
 var str = "Hello, playground"
 
-var myIntArray: [Int] = [1,3,5,7,9]
+let myIntArray: [Int] = [1,3,5,7,9]
 
 for index in 0..<myIntArray.count {
     myIntArray[index]
@@ -11,18 +11,73 @@ for index in 0..<myIntArray.count {
 var someSubset = myIntArray[2...4]
 
 
+var arr = myIntArray
+
 var my2DArray: [[Int]] = [[1,2], [10,11], [20,30]]
 var element = my2DArray[1][1]
 print(element)
 
-myIntArray.append(10)
-print(myIntArray)
 
-myIntArray.insert(4, at: 2)
-
-myIntArray.remove(at: 3)
 
 print(myIntArray)
+
+func diagonalDifference(arr: [[Int]]) -> Int {
+    // Write your code here
+    let rowMax = arr.count
+    let columnMax = arr[0].count
+    var a = 0
+    var b = 0
+
+    for index in 0..<rowMax {
+        for index2 in 0..<columnMax {
+            if index == index2 {
+                a += arr[index][index2]
+            } else if index2 == columnMax - index {
+                b += arr[index][index2]
+            }
+        }
+    }
+    return abs(a - b)
+}
+
+var string:String = " "
+
+func staircase(n: Int) -> Void {
+    var newString = " "
+    var hash = "#"
+    
+
+
+    for index in 1..<n+1 {
+        var geto = index
+        var printString = ""
+        
+        while ( n - geto > 0 ) {
+            printString += newString
+            geto = geto + 1
+        }
+        
+        geto = index
+        while ( geto > 0 ) {
+            printString += hash
+            geto -= 1
+        }
+
+        print(printString)
+    }
+    
+}
+
+staircase(n: 6)
+
+
+let ad = [[3],
+          [11, 2, 4],
+          [4, 5, 6],
+          [10, 8, -12]]
+
+
+diagonalDifference(arr: ad)
 
 typealias TCPPacket = UInt16
 var maxTCPPacketsize = TCPPacket.max
@@ -308,7 +363,7 @@ extension Collection {
         repeat {
             let el = self[index]
             result.append(el)
-            index = index.successor()
+//            index = index.successor()
         } while (index != self.endIndex)
         return result
         
