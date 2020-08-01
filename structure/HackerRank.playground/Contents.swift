@@ -40,3 +40,73 @@ func miniMaxSum(arr: [Int]) -> Void {
     // }
 
 }
+
+let greeting = "Guten Tag!"
+let index = greeting.index(greeting.startIndex, offsetBy: 7)
+greeting[index]
+
+var timeString = "07:05:45PM"
+let aOrP = timeString.index(timeString.startIndex, offsetBy: 8)
+let endaOrP = timeString.index(timeString.startIndex, offsetBy: 9)
+timeString[aOrP]
+
+let hourStringEnd = timeString.index(timeString.startIndex, offsetBy: 1)
+var hoursString = timeString[timeString.startIndex...hourStringEnd]
+
+
+if timeString[aOrP] == "P" {
+    var hour = Int(hoursString)
+    hour = hour! + 12
+    if hour == 24{
+        hour = 0
+    }
+    timeString.replaceSubrange(timeString.startIndex...hourStringEnd, with: String(hour!))
+    timeString.removeSubrange(aOrP...endaOrP)
+    return timeString
+} else {
+    var hour = Int(hoursString)
+    if hour == 12 {
+        hour = 0
+        timeString.replaceSubrange(timeString.startIndex...hourStringEnd, with: String(hour!))
+    }
+    timeString.removeSubrange(aOrP...endaOrP)
+    return timeString
+}
+
+
+func timeConversion(s: String) -> String {
+    /*
+     * Write your code here.
+     */
+var timeString = s
+let aOrP = timeString.index(timeString.startIndex, offsetBy: 8)
+let endaOrP = timeString.index(timeString.startIndex, offsetBy: 9)
+timeString[aOrP]
+
+let hourStringEnd = timeString.index(timeString.startIndex, offsetBy: 1)
+var hoursString = timeString[timeString.startIndex...hourStringEnd]
+
+
+if timeString[aOrP] == "P" {
+    var hour = Int(hoursString)
+    hour = hour! + 12
+    if hour == 24{
+        hour = 0
+        timeString.replaceSubrange(timeString.startIndex...hourStringEnd, with: String("00"))
+    } else {
+    timeString.replaceSubrange(timeString.startIndex...hourStringEnd, with: String(hour!))
+    }
+    timeString.removeSubrange(aOrP...endaOrP)
+    return timeString
+} else {
+    var hour = Int(hoursString)
+    if hour == 12 {
+        hour = 0
+        timeString.replaceSubrange(timeString.startIndex...hourStringEnd, with: String("00"))
+    }
+    timeString.removeSubrange(aOrP...endaOrP)
+    return timeString
+}
+}
+
+timeConversion(s: "12:45:54PM")
