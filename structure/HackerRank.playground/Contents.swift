@@ -1,4 +1,5 @@
 import UIKit
+import Foundation
 
 func staircase(n: Int) -> Void {
     let newString = " "
@@ -62,7 +63,7 @@ if timeString[aOrP] == "P" {
     }
     timeString.replaceSubrange(timeString.startIndex...hourStringEnd, with: String(hour!))
     timeString.removeSubrange(aOrP...endaOrP)
-    return timeString
+//    return timeString
 } else {
     var hour = Int(hoursString)
     if hour == 12 {
@@ -70,7 +71,7 @@ if timeString[aOrP] == "P" {
         timeString.replaceSubrange(timeString.startIndex...hourStringEnd, with: String(hour!))
     }
     timeString.removeSubrange(aOrP...endaOrP)
-    return timeString
+//    return timeString
 }
 
 
@@ -110,3 +111,40 @@ if timeString[aOrP] == "P" {
 }
 
 timeConversion(s: "12:45:54PM")
+
+func gradingStudents(grades: [Int]) -> [Int] {
+    // Write your code here
+    
+    var onlyGrades = grades
+    let num = onlyGrades.remove(at: 0)
+    var newGrades = [Int]()
+    
+    func calculator(_ score:Int) -> Int{
+        var standard = 100
+        var returnScore = score
+        while (standard > 35){
+            if (returnScore - standard > -3) && (returnScore < standard + 2) {
+                returnScore = standard
+                return returnScore
+            } else {
+                
+            }
+            standard -= 5
+        }
+        return returnScore
+    }
+    
+    
+    for index in 0..<num {
+        var score = onlyGrades[index]
+        newGrades.append(calculator(score))
+    }
+    
+    return newGrades
+}
+
+let testArray = [4,73,67,38,33]
+
+print(gradingStudents(grades: testArray))
+
+
