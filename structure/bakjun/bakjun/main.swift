@@ -387,23 +387,133 @@ import Foundation
 //별 찍기 - 8
 //2445
 //
-let number = Int(readLine()!)!
-let totalRow = 2*number - 1
-var stars = 1
 
-for index in 0..<totalRow {
-    if index <= 5 {
-        let numOfBlank = totalRow - (index)
-        
-        
-        
-        
+//별 찍기 - 12
+//2522
+//let num = Int(readLine()!)!
+//
+//var string = ""
+//
+//for index in 1...num*2 {
+//    var blank = num - index
+//    var star = index
+//    while (blank > 0){
+//        string.append(" ")
+//        blank -= 1
+//    }
+//    while (star > 0) {
+//        string.append("*")
+//        star -= 1
+//    }
+//    print(string)
+//    string = ""
+//}
+//
+//for index in 1...num {
+//    var star = num - index
+//    var blank = index
+//    while (blank > 0) {
+//        string.append(" ")
+//        blank -= 1
+//    }
+//    while (star > 0) {
+//        string.append("*")
+//        star -= 1
+//    }
+//    print(string)
+//    string = ""
+//}
+    
+    
+//별 찍기 - 9
+//2446
+//
+//*********
+// *******
+//  *****
+//   ***
+//    *
+//   ***
+//  *****
+// *******
+//*********
+//let number = Int(readLine()!)!
+//var string = ""
+//
+//for index in 1...number {
+//    var numOfStar = number*2-(index*2-1)
+//    var numOfBlank = index - 1
+//
+//    while(numOfBlank > 0) {
+//        string.append(" ")
+//        numOfBlank -= 1
+//    }
+//    while(numOfStar > 0) {
+//        string.append("*")
+//        numOfStar -= 1
+//    }
+//
+//    print(string)
+//    string = ""
+//}
+//
+//for index in 2...number {
+//    var numOfStar = index*2-1
+//    var numOfBlank = number-index
+//
+//    while(numOfBlank > 0) {
+//        string.append(" ")
+//        numOfBlank -= 1
+//    }
+//    while(numOfStar > 0) {
+//        string.append("*")
+//        numOfStar -= 1
+//    }
+//    print(string)
+//    string = ""
+//}
+
+//별 찍기 - 16
+//10991
+//    *
+//   * *
+//  * * *
+// * * * *
+//* * * * *
+
+//let number = Int(readLine()!)!
+//var string = ""
+//
+//for index in 1...number {
+//    var numOfBlank = number-index
+//    var numOfStar = index
+//
+//    while (numOfBlank > 0) {
+//        string.append(" ")
+//        numOfBlank -= 1
+//    }
+//    while (numOfStar > 0) {
+//        string.append(" *")
+//        numOfStar -= 1
+//    }
+//    string.remove(at: string.startIndex)
+//    print(string)
+//    string = ""
+//}
+//
+
+//별 찍기
+//10992
+
+let number = Int(readLine()!)!
+var string = ""
+var number2 = number
+for index in 1...number {
+    if index == 1{
+        while(number-index > 0) {
+            
+            
+        }
         
     }
-    
-    
-    
-    
-    
 }
-
