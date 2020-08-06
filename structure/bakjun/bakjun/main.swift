@@ -504,16 +504,195 @@ import Foundation
 
 //별 찍기
 //10992
+//
+//let number = Int(readLine()!)!
+//var string = ""
+//var number2 = number
+//for index in 1...number {
+//    if index == 1{
+//        while(number-index > 0) {
+//
+//
+//        }
+//
+//    }
+//}
 
+
+//1로 만들기
+//1463
+
+//let number = Int(readLine()!)!
+//
+//var memo = [Int](repeating: 0, count: number+1)
+//
+//func min(_ num1:Int, _ num2:Int) -> Int {
+//    if num1 <= num2 {
+//        return num1
+//    } else {
+//        return num2
+//    }
+//}
+//
+//var index = 0
+//
+//while(true) {
+//    if index > number {
+//        break
+//    }
+//    if index <= 1 {
+//        memo[index] = 0
+//    } else {
+//        var tempMin = number + 1
+//        if index % 3 == 0 {
+//            let tempIndex = index/3
+//            tempMin = min(tempMin, memo[tempIndex])
+//        }
+//        if index % 2 == 0 {
+//            let tempIndex = index/2
+//            tempMin = min(tempMin, memo[tempIndex])
+//        }
+//        tempMin = min(tempMin, memo[index-1])
+//        memo[index] = tempMin + 1
+//    }
+//    index += 1
+//}
+//
+//print(memo[number])
+
+
+//2 x n 타일링
+//11726
+
+//let number = Int(readLine()!)!
+//
+//var mem = [Int](repeating: 0, count: 1001)
+//
+//mem[1] = 1
+//mem[2] = 2
+//
+//if number == 1 {
+//    print(mem[1])
+//
+//}else if number == 2{
+//    print(mem[2])
+//} else {
+//
+//    for index in 3..<number+1 {
+//        mem[index] = (mem[index-2] + mem[index-1])
+//    }
+//    print(mem[number]%10007)
+//}
+//2 x n 타일링
+//11727
+
+//let number = Int(readLine()!)!
+//
+//var mem = [Int](repeating: 0, count: 1001)
+//
+//mem[1] = 1
+//mem[2] = 3
+//
+//for index in 3..<number+1 {
+//        mem[index] = (mem[index-2]*2 + mem[index-1])%10007
+//}
+//print(mem[number]%10007)
+//
+
+
+//1,2,3 더하기
+//9095
+//let number = Int(readLine()!)!
+//
+//var inputArray = [Int]()
+//
+//for index in 0..<number {
+//    inputArray.append(Int(readLine()!)!)
+//}
+//
+//var mem = [Int](repeating: 0, count: 100)
+//
+//mem[1] = 1
+//mem[2] = 2
+//mem[3] = 4
+//
+//for index in 0..<number{
+//    let solveNumber = inputArray[index]
+//    if solveNumber == 1 {
+//        print(mem[1])
+//        continue
+//    }else if solveNumber == 2 {
+//        print(mem[2])
+//        continue
+//    }else if solveNumber == 3 {
+//        print(mem[3])
+//        continue
+//    }
+//    for index2 in 4...solveNumber {
+//        mem[index2] = mem[index2 - 3] + mem[index2 - 2] + mem[index2 - 1]
+//    }
+//    print(mem[solveNumber])
+//}
+
+
+//쉬운 계단 수
+//10844
+
+//
+//var arr = [[Int]](repeating: Array(repeating: 0, count: 10), count: 101)
+//
+//for index1 in 1..<101 {
+//    for index2 in 0..<10{
+//        if index1 == 1 {
+//            arr[index1][index2] = 1
+//        } else {
+//            if 1 <= index2 && 8 >= index2 {
+//                arr[index1][index2] = (arr[index1-1][index2-1] + arr[index1-1][index2+1]) % 100000000
+//            } else if index2 == 0 {
+//                arr[index1][index2] = arr[index1 - 1][index2 + 1] % 100000000
+//            } else if index2 == 9 {
+//                arr[index1][index2] = arr[index1 - 1][index2 - 1] % 100000000
+//            }
+//        }
+//    }
+//}
+//let number = Int(readLine()!)!
+//
+//func sumArray(_ array:[Int]) -> Int {
+//    var sum = 0
+//    for index in 0..<array.count {
+//        sum += array[index]
+//    }
+//    return sum
+//}
+//
+//print(sumArray(arr[number]))
+
+//오르막 수
+//11057
+
+//
 let number = Int(readLine()!)!
-var string = ""
-var number2 = number
-for index in 1...number {
-    if index == 1{
-        while(number-index > 0) {
-            
-            
+
+var arr = [[Int]](repeating: Array(repeating: 0, count: 10), count: 1001)
+
+for index in 0..<10 {
+    arr[1][index] = 1
+}
+for index2 in 2..<1001 {
+    for index3 in 0..<10 {
+        for index4 in 0..<(index3+1) {
+            arr[index2][index3] += arr[index2 - 1][index4] % 10007
         }
-        
     }
 }
+func sumArray(_ array:[Int]) -> Int {
+    var sum = 0
+    for index in 0..<array.count {
+        sum += array[index]
+    }
+    return sum
+}
+
+
+print(sumArray(arr[number]))
