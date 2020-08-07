@@ -671,28 +671,53 @@ import Foundation
 //오르막 수
 //11057
 
+////
+//let number = Int(readLine()!)!
 //
-let number = Int(readLine()!)!
+//var arr = [[Int]](repeating: Array(repeating: 0, count: 10), count: 1001)
+//
+//for index in 0..<10 {
+//    arr[1][index] = 1
+//}
+//for index2 in 2..<1001 {
+//    for index3 in 0..<10 {
+//        for index4 in 0..<(index3+1) {
+//            arr[index2][index3] += arr[index2 - 1][index4] % 10007
+//        }
+//    }
+//}
+//func sumArray(_ array:[Int]) -> Int {
+//    var sum = 0
+//    for index in 0..<array.count {
+//        sum += array[index]
+//    }
+//    return sum
+//}
+//
+//
+//print(sumArray(arr[number]))
 
-var arr = [[Int]](repeating: Array(repeating: 0, count: 10), count: 1001)
 
-for index in 0..<10 {
-    arr[1][index] = 1
-}
-for index2 in 2..<1001 {
-    for index3 in 0..<10 {
-        for index4 in 0..<(index3+1) {
-            arr[index2][index3] += arr[index2 - 1][index4] % 10007
-        }
-    }
-}
-func sumArray(_ array:[Int]) -> Int {
-    var sum = 0
-    for index in 0..<array.count {
-        sum += array[index]
-    }
-    return sum
-}
+//이친수
+//2193
+//
+//let number = Int(readLine()!)!
+//
+//var mem = [0,1,1]
+//
+//for index in 3..<91 {
+//    mem.append(mem[index - 2] + mem[index - 1])
+//
+//}
+//
+//func sumArray(_ array:[Int]) -> Int {
+//    var sum = 0
+//    for index in 0..<array.count {
+//        sum += array[index]
+//    }
+//    return sum
+//}
+//
+//print(mem[number])
 
 
-print(sumArray(arr[number]))
