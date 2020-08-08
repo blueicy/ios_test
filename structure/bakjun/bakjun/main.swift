@@ -720,4 +720,31 @@ import Foundation
 //
 //print(mem[number])
 
+//스티커
+//9465
+
+let number = Int(readLine()!)!
+
+for i in 0..<number {
+    let num = Int(readLine()!)!
+    
+    var st = readLine()!.split(separator: " ").map{ Int($0)! }
+    var st2 = readLine()!.split(separator: " ").map{ Int($0)! }
+    
+//    for index in 0..<number {
+    //    var D = [[Int]](repeating: Array(repeating: 0, count: 3), count: maxi)
+        
+        
+        st[1] += st2[0]
+        st2[1] += st[0]
+
+        for index2 in 2..<num {
+            st[index2] += max(st2[index2-1], st2[index2-2])
+            st2[index2] += max(st[index2-1], st[index2-2])
+//        }
+        
+    }
+    print(max(st[num-1], st2[num-1]))
+}
+
 
