@@ -748,26 +748,50 @@ import Foundation
 //}
 
 //2156
-//포도주 시식
+////포도주 시식
+//let number = Int(readLine()!)!
+//
+//var dp = [Int]()
+//var sum = [Int]()
+//dp.append(0)
+//for _ in 0..<number {
+//    dp.append(Int(readLine()!)!)
+//}
+//
+//sum.append(0)
+//sum.append(dp[1])
+//
+//if number > 1 {
+//    sum.append(dp[1] + dp[2])
+//}
+//
+//for index in 3...number {
+//    sum.append(max(dp[index]+dp[index-1]+sum[index-3], dp[index]+sum[index-2], sum[index-1]))
+//    sum[index] = max(sum[index-1],sum[index])
+//}
+//
+//print(sum[number-1])
+
+//11053
+//가장 긴 증가하는 부분 수열
+
 let number = Int(readLine()!)!
 
-var dp = [Int]()
-var sum = [Int]()
-dp.append(0)
-for _ in 0..<number {
-    dp.append(Int(readLine()!)!)
+var mem = readLine()!.split(separator: " ").map{ Int($0)! }
+
+var dp = [Int](repeating: 0, count: number)
+
+
+if number == 1 {
+    dp[0] = 1
+} else {
+    for index in 0..<number {
+        dp[index] = 1
+        for index2 in 0..<index {
+            if mem[index2] < mem[index] {
+                dp[index] = max(dp[index], dp[index2]+1)
+            }
+        }
+    }
 }
-
-sum.append(0)
-sum.append(dp[1])
-
-if number > 1 {
-    sum.append(dp[1] + dp[2])
-}
-
-for index in 3...number {
-    sum.append(max(dp[index]+dp[index-1]+sum[index-3], dp[index]+sum[index-2], sum[index-1]))
-    sum[index] = max(sum[index-1],sum[index])
-}
-
-print(sum[number-1])
+print(dp.max()!)
