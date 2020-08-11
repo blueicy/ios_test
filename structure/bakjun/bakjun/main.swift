@@ -775,23 +775,49 @@ import Foundation
 //11053
 //가장 긴 증가하는 부분 수열
 
+//let number = Int(readLine()!)!
+//
+//var mem = readLine()!.split(separator: " ").map{ Int($0)! }
+//
+//var dp = [Int](repeating: 0, count: number)
+//
+//
+//if number == 1 {
+//    dp[0] = 1
+//} else {
+//    for index in 0..<number {
+//        dp[index] = 1
+//        for index2 in 0..<index {
+//            if mem[index2] < mem[index] {
+//                dp[index] = max(dp[index], dp[index2]+1)
+//            }
+//        }
+//    }
+//}
+//print(dp.max()!)
+
+//11055
+//가장 큰 증가 부분 수열
+
 let number = Int(readLine()!)!
 
 var mem = readLine()!.split(separator: " ").map{ Int($0)! }
 
-var dp = [Int](repeating: 0, count: number)
+var dp = [Int].init(repeating: 0, count: number)
 
+var max = 0
 
-if number == 1 {
-    dp[0] = 1
-} else {
-    for index in 0..<number {
-        dp[index] = 1
-        for index2 in 0..<index {
-            if mem[index2] < mem[index] {
-                dp[index] = max(dp[index], dp[index2]+1)
-            }
+for index in 0..<number {
+    dp[index] += mem[index]
+    for index2 in 0..<index {
+        if mem[index2] < mem[index] && dp[index] < dp[index2] + mem[index] {
+            dp[index] = dp[index2] + mem[index]
         }
     }
+    if max < dp[index] {
+        max = dp[index]
+    }
+    
 }
-print(dp.max()!)
+
+print(max)
