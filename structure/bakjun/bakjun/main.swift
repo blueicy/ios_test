@@ -799,25 +799,41 @@ import Foundation
 //11055
 //가장 큰 증가 부분 수열
 
+//let number = Int(readLine()!)!
+//
+//var mem = readLine()!.split(separator: " ").map{ Int($0)! }
+//
+//var dp = [Int].init(repeating: 0, count: number)
+//
+//var max = 0
+//
+//for index in 0..<number {
+//    dp[index] += mem[index]
+//    for index2 in 0..<index {
+//        if mem[index2] < mem[index] && dp[index] < dp[index2] + mem[index] {
+//            dp[index] = dp[index2] + mem[index]
+//        }
+//    }
+//    if max < dp[index] {
+//        max = dp[index]
+//    }
+//
+//}
+//
+//print(max)
+
+
 let number = Int(readLine()!)!
+let mem = readLine()!.split(separator: " ").map{ Int($0)! }
 
-var mem = readLine()!.split(separator: " ").map{ Int($0)! }
+var dp = mem
 
-var dp = [Int].init(repeating: 0, count: number)
-
-var max = 0
-
-for index in 0..<number {
-    dp[index] += mem[index]
-    for index2 in 0..<index {
-        if mem[index2] < mem[index] && dp[index] < dp[index2] + mem[index] {
-            dp[index] = dp[index2] + mem[index]
-        }
-    }
-    if max < dp[index] {
-        max = dp[index]
-    }
-    
+for index in 1..<number {
+    let maxi = max(dp[index], dp[index-1] + dp[index])
+    dp[index] = maxi
 }
 
-print(max)
+
+print(dp.max()!)
+
+
