@@ -823,17 +823,50 @@ import Foundation
 //print(max)
 
 
+//연속합
+//1912
+//let number = Int(readLine()!)!
+//let mem = readLine()!.split(separator: " ").map{ Int($0)! }
+//
+//var dp = mem
+//
+//for index in 1..<number {
+//    let maxi = max(dp[index], dp[index-1] + dp[index])
+//    dp[index] = maxi
+//}
+//
+//
+//print(dp.max()!)
+
+//계단오르기
+//2579
 let number = Int(readLine()!)!
-let mem = readLine()!.split(separator: " ").map{ Int($0)! }
 
-var dp = mem
+var stair = [Int]()
 
-for index in 1..<number {
-    let maxi = max(dp[index], dp[index-1] + dp[index])
-    dp[index] = maxi
+for _ in 0..<number {
+    stair.append(Int(readLine()!)!)
 }
 
+var dp = [Int]()
 
-print(dp.max()!)
+
+dp.append(stair[0])
+
+if number > 1 {
+    dp.append(stair[0] + stair[1])
+}
+if number > 2 {
+    dp.append(max(stair[1] + stair[2], stair[0] + stair[2]))
+}
+
+if number > 3 {
+    for i in 3..<number {
+        dp.append(max(dp[i-3] + stair[i-1] + stair[i], dp[i-2] + stair[i]))
+    }
+}
+print(dp[number-1])
+
+
 
 
