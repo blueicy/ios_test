@@ -840,33 +840,53 @@ import Foundation
 
 //계단오르기
 //2579
-let number = Int(readLine()!)!
+//let number = Int(readLine()!)!
+//
+//var stair = [Int]()
+//
+//for _ in 0..<number {
+//    stair.append(Int(readLine()!)!)
+//}
+//
+//var dp = [Int]()
+//
+//
+//dp.append(stair[0])
+//
+//if number > 1 {
+//    dp.append(stair[0] + stair[1])
+//}
+//if number > 2 {
+//    dp.append(max(stair[1] + stair[2], stair[0] + stair[2]))
+//}
+//
+//if number > 3 {
+//    for i in 3..<number {
+//        dp.append(max(dp[i-3] + stair[i-1] + stair[i], dp[i-2] + stair[i]))
+//    }
+//}
+//print(dp[number-1])
 
-var stair = [Int]()
 
-for _ in 0..<number {
-    stair.append(Int(readLine()!)!)
-}
+//제곱수의 합
+//1699
 
-var dp = [Int]()
-
-
-dp.append(stair[0])
-
-if number > 1 {
-    dp.append(stair[0] + stair[1])
-}
-if number > 2 {
-    dp.append(max(stair[1] + stair[2], stair[0] + stair[2]))
-}
-
-if number > 3 {
-    for i in 3..<number {
-        dp.append(max(dp[i-3] + stair[i-1] + stair[i], dp[i-2] + stair[i]))
+func _1699() {
+    let number = Int(readLine()!)!
+    var dp = [Int](repeating: 0, count: 100001)
+    
+    for index in 1..<number+1 {
+        dp[index] = index
+        for j in 1..<index {
+            if j*j > index {
+                break
+            }
+        dp[index] = min(dp[index], dp[index-j*j]+1)
+        }
     }
+    
+    print(dp[number])
+    
 }
-print(dp[number-1])
 
-
-
-
+_1699()
