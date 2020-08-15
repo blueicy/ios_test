@@ -43,8 +43,8 @@ func miniMaxSum(arr: [Int]) -> Void {
 }
 
 let greeting = "Guten Tag!"
-let index = greeting.index(greeting.startIndex, offsetBy: 7)
-greeting[index]
+    let index = greeting.index(greeting.startIndex, offsetBy: 7)
+    greeting[index]
 
 var timeString = "07:05:45PM"
 let aOrP = timeString.index(timeString.startIndex, offsetBy: 8)

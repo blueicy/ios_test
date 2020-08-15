@@ -870,23 +870,84 @@ import Foundation
 
 //제곱수의 합
 //1699
+//
+//func _1699() {
+//    let number = Int(readLine()!)!
+//    var dp = [Int](repeating: 0, count: 100001)
+//
+//    for index in 1..<number+1 {
+//        dp[index] = index
+//        for j in 1..<index {
+//            if j*j > index {
+//                break
+//            }
+//        dp[index] = min(dp[index], dp[index-j*j]+1)
+//        }
+//    }
+//
+//    print(dp[number])
+//
+//}
+//
+//_1699()
 
-func _1699() {
-    let number = Int(readLine()!)!
-    var dp = [Int](repeating: 0, count: 100001)
+//타일 채우기
+//2133
+//fail
+//func _2133() {
+//    let number = Int(readLine()!)!
+//
+//    var dp = [Int]()
+//    dp.append(0)
+//
+//    for index in 0...number {
+//        if index % 2 != 0 {
+//            dp.append(0)
+//        } else {
+//            if index == 0 {
+//                continue
+//            }
+//
+//            if index == 2 {
+//                dp.append(3)
+//            } else {
+//                let number2 = index/2
+//                var cal = dp[index-2]
+//                for index2 in 1..<number2 {
+//                    cal = cal * (dp[index-2]-index2)
+//                }
+//                dp.append(cal)
+//            }
+//
+//        }
+//    }
+//    print(dp[number])
+//}
+//
+//_2133()
     
-    for index in 1..<number+1 {
-        dp[index] = index
-        for j in 1..<index {
-            if j*j > index {
-                break
+func _2133() {
+    let number = Int(readLine()!)!
+    
+    var dp = [Int](repeating: 0, count: 31)
+    
+    dp[2] = 3
+    
+    for index in 3..<31 {
+        if index % 2 != 0 {
+            dp.append(0)
+        } else {
+            dp[index] = dp[2] * dp[index-2]
+            for index2 in stride(from: 4, to: index, by: 2) {
+                dp[index] += 2 * dp[index - index2]
             }
-        dp[index] = min(dp[index], dp[index-j*j]+1)
+            dp[index] += 2
         }
     }
     
     print(dp[number])
-    
 }
 
-_1699()
+_2133()
+
+
