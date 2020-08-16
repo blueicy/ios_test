@@ -989,3 +989,23 @@ import Foundation
 //
 //_9461()
 
+
+//2225
+//합분배
+
+func _2225() {
+    let num = readLine()!.split(separator: " ").map{ Int($0)! }
+
+    var dp = [Int](repeating: 0, count: num[0])
+    dp.insert(1, at: 0)
+
+    for _ in 1..<num[1]+1 {
+        for index in 1..<num[0]+1 {
+            dp[index] = (dp[index] + dp[index-1])%1000000000
+        }
+    }
+
+    print(dp[num[0]])
+}
+
+_2225()
