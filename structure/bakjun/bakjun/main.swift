@@ -926,28 +926,66 @@ import Foundation
 //
 //_2133()
     
-func _2133() {
-    let number = Int(readLine()!)!
-    
-    var dp = [Int](repeating: 0, count: 31)
-    
-    dp[2] = 3
-    
-    for index in 3..<31 {
-        if index % 2 != 0 {
-            dp.append(0)
-        } else {
-            dp[index] = dp[2] * dp[index-2]
-            for index2 in stride(from: 4, to: index, by: 2) {
-                dp[index] += 2 * dp[index - index2]
-            }
-            dp[index] += 2
-        }
-    }
-    
-    print(dp[number])
-}
+//func _2133() {
+//    let number = Int(readLine()!)!
+//
+//    var dp = [Int](repeating: 0, count: 31)
+//
+//    dp[2] = 3
+//
+//    for index in 3..<31 {
+//        if index % 2 != 0 {
+//            dp.append(0)
+//        } else {
+//            dp[index] = dp[2] * dp[index-2]
+//            for index2 in stride(from: 4, to: index, by: 2) {
+//                dp[index] += 2 * dp[index - index2]
+//            }
+//            dp[index] += 2
+//        }
+//    }
+//
+//    print(dp[number])
+//}
+//
+//_2133()
+//
 
-_2133()
 
+//9461
+//파도반수열
+//
+//func _9461(){
+//    let number = Int(readLine()!)!
+//
+//    var num = [Int]()
+//    for _ in 0..<number {
+//        num.append(Int(readLine()!)!)
+//    }
+//
+//    var dp = [Int]()
+//
+//    dp.append(0)
+//    dp.append(1)
+//    dp.append(1)
+//    dp.append(1)
+//    dp.append(2)
+//    dp.append(2)
+//    dp.append(3)
+//    dp.append(4)
+//    dp.append(5)
+//    dp.append(7)
+//    dp.append(9)
+//
+//    for index in 11..<101 {
+//        let temp = dp[index - 2] + dp[index - 3]
+//        dp.append(temp)
+//    }
+//
+//    for index0 in 0..<number {
+//        print(dp[num[index0]])
+//    }
+//}
+//
+//_9461()
 
