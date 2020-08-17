@@ -993,19 +993,51 @@ import Foundation
 //2225
 //합분배
 
-func _2225() {
-    let num = readLine()!.split(separator: " ").map{ Int($0)! }
+//func _2225() {
+//    let num = readLine()!.split(separator: " ").map{ Int($0)! }
+//
+//    var dp = [Int](repeating: 0, count: num[0])
+//    dp.insert(1, at: 0)
+//
+//    for _ in 1..<num[1]+1 {
+//        for index in 1..<num[0]+1 {
+//            dp[index] = (dp[index] + dp[index-1])%1000000000
+//        }
+//    }
+//
+//    print(dp[num[0]])
+//}
+//
+//_2225()
 
-    var dp = [Int](repeating: 0, count: num[0])
-    dp.insert(1, at: 0)
 
-    for _ in 1..<num[1]+1 {
-        for index in 1..<num[0]+1 {
-            dp[index] = (dp[index] + dp[index-1])%1000000000
+//2011
+//암호코드
+// lastindex
+
+func _2011() {
+    let number = Array(readLine()!.map{ Int(String($0))! })
+    if number[0] == 0 {
+        print(0)
+    } else {
+        var res = [1,1]
+        let mod = 1000000
+        
+        for index in 1..<number.count {
+            var count = 0
+            let num = number[index-1..<index+1]
+            let numb = num.first! * 10 + num.last!
+            
+            if num[index] > 0 {
+                count += res[res.index(res.count, offsetBy: -1)]
+            }
+            if numb >= 10 && numb <= 26 {
+                count += res[res.index(res.count, offsetBy: -2)]
+            }
+            res.append(count % mod)
         }
+        print(res.last!)
     }
-
-    print(dp[num[0]])
 }
 
-_2225()
+_2011()
