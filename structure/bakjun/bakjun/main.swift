@@ -1015,29 +1015,56 @@ import Foundation
 //암호코드
 // lastindex
 
-func _2011() {
-    let number = Array(readLine()!.map{ Int(String($0))! })
-    if number[0] == 0 {
-        print(0)
-    } else {
-        var res = [1,1]
-        let mod = 1000000
-        
-        for index in 1..<number.count {
-            var count = 0
-            let num = number[index-1..<index+1]
-            let numb = num.first! * 10 + num.last!
-            
-            if num[index] > 0 {
-                count += res[res.index(res.count, offsetBy: -1)]
-            }
-            if numb >= 10 && numb <= 26 {
-                count += res[res.index(res.count, offsetBy: -2)]
-            }
-            res.append(count % mod)
+//func _2011() {
+//    let number = Array(readLine()!.map{ Int(String($0))! })
+//    if number[0] == 0 {
+//        print(0)
+//    } else {
+//        var res = [1,1]
+//        let mod = 1000000
+//
+//        for index in 1..<number.count {
+//            var count = 0
+//            let num = number[index-1..<index+1]
+//            let numb = num.first! * 10 + num.last!
+//
+//            if num[index] > 0 {
+//                count += res[res.index(res.count, offsetBy: -1)]
+//            }
+//            if numb >= 10 && numb <= 26 {
+//                count += res[res.index(res.count, offsetBy: -2)]
+//            }
+//            res.append(count % mod)
+//        }
+//        print(res.last!)
+//    }
+//}
+//
+//_2011()
+
+
+//11052
+//카드구매하기
+
+func _11052() {
+    let number = Int(readLine()!)!
+    
+    var card = readLine()!.split(separator: " ").map{ Int($0)! }
+    card.insert(0, at: 0)
+    
+    var dp = [Int].init(repeating: 0, count: number+1)
+    
+    dp[1] = card[1]
+    dp[2] = max(card[2], card[1]*2)
+    
+    for index1 in 3..<number+1 {
+        dp[index1] = card[index1]
+        for index2 in 1..<(index1/2) + 1 {
+            dp[index1] = max(dp[index1], dp[index2] + dp[index1-index2])
         }
-        print(res.last!)
     }
+    
+    print(dp[number])
 }
 
-_2011()
+_11052()
