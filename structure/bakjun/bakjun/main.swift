@@ -1046,25 +1046,99 @@ import Foundation
 //11052
 //카드구매하기
 
-func _11052() {
-    let number = Int(readLine()!)!
+//func _11052() {
+//    let number = Int(readLine()!)!
+//
+//    var card = readLine()!.split(separator: " ").map{ Int($0)! }
+//    card.insert(0, at: 0)
+//
+//    var dp = [Int].init(repeating: 0, count: number+1)
+//
+//    dp[1] = card[1]
+//    dp[2] = max(card[2], card[1]*2)
+//
+//    for index1 in 3..<number+1 {
+//        dp[index1] = card[index1]
+//        for index2 in 1..<(index1/2) + 1 {
+//            dp[index1] = max(dp[index1], dp[index2] + dp[index1-index2])
+//        }
+//    }
+//
+//    print(dp[number])
+//}
+//
+//_11052()
+
+
+//수정렬하기2
+//2751
+//mergeSort
+
+func mergeSort(_ array:[Int]) -> [Int] {
+    if array.count <= 1 {
+        return array
+    }
     
-    var card = readLine()!.split(separator: " ").map{ Int($0)! }
-    card.insert(0, at: 0)
+
+    let mid = array.count / 2
+    var lList = [Int]()
+    var rList = [Int]()
+//        mergeSort(arr: arr)
+    lList += array[0..<mid]
+    rList += array[mid..<array.count]
     
-    var dp = [Int].init(repeating: 0, count: number+1)
+    var left = mergeSort(lList)
+    var right = mergeSort(rList)
     
-    dp[1] = card[1]
-    dp[2] = max(card[2], card[1]*2)
+    return merge(left, right)
+}
+
+func merge(_ left:[Int],_ right:[Int]) -> [Int] {
+    var leftIndex = 0
+    var rightIndex = 0
     
-    for index1 in 3..<number+1 {
-        dp[index1] = card[index1]
-        for index2 in 1..<(index1/2) + 1 {
-            dp[index1] = max(dp[index1], dp[index2] + dp[index1-index2])
+    var orderedPile = [Int]()
+    
+    while leftIndex < left.count && rightIndex < right.count {
+        if left[leftIndex] < right[rightIndex] {
+            orderedPile.append(left[leftIndex])
+            leftIndex += 1
+        } else if left[leftIndex] > right[rightIndex] {
+            orderedPile.append(right[rightIndex])
+            rightIndex += 1
+        } else {
+            orderedPile.append(left[leftIndex])
+            leftIndex += 1
+            orderedPile.append(right[rightIndex])
+            rightIndex += 1
         }
     }
     
-    print(dp[number])
+    while leftIndex < left.count {
+        orderedPile.append(left[leftIndex])
+        leftIndex += 1
+    }
+    
+    while rightIndex < right.count {
+        orderedPile.append(right[rightIndex])
+        rightIndex += 1
+    }
+    
+    return orderedPile
 }
 
-_11052()
+
+func _2751() {
+    let number = Int(readLine()!)!
+    
+    var arr = [Int]()
+    for _ in 0..<number {
+        arr.append(Int(readLine()!)!)
+    }
+    
+    arr = mergeSort(arr)
+    for index in 0..<number {
+        print(arr[index])
+    }
+}
+_2751()
