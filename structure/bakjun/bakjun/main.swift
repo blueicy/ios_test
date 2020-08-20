@@ -1169,6 +1169,8 @@ func merge(_ left:[Int],_ right:[Int]) -> [Int] {
 //    print("\(coordinate[index][0]) \(coordinate[index][1])")
 //}
 
+//2차원 좌표정렬
+//11651
 let number = Int(readLine()!)!
 
 var coordinate = [[Int]](repeating: Array(repeating: 0, count: 2), count: number)
