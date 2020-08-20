@@ -1128,17 +1128,43 @@ func merge(_ left:[Int],_ right:[Int]) -> [Int] {
 }
 
 
-func _2751() {
-    let number = Int(readLine()!)!
-    
-    var arr = [Int]()
-    for _ in 0..<number {
-        arr.append(Int(readLine()!)!)
-    }
-    
-    arr = mergeSort(arr)
-    for index in 0..<number {
-        print(arr[index])
-    }
+//func _2751() {
+//    let number = Int(readLine()!)!
+//
+//    var arr = [Int]()
+//    for _ in 0..<number {
+//        arr.append(Int(readLine()!)!)
+//    }
+//
+//    arr = mergeSort(arr)
+//    for index in 0..<number {
+//        print(arr[index])
+//    }
+//}
+//_2751()
+
+//2차원 좌표정렬
+//11650
+// sorted
+let number = Int(readLine()!)!
+
+var coordinate = [[Int]](repeating: Array(repeating: 0, count: 2), count: number)
+
+for index in 0..<number {
+    var aCoord = readLine()!.split(separator: " ").map{ Int($0)! }
+    coordinate[index][0] = aCoord[0]
+    coordinate[index][1] = aCoord[1]
 }
-_2751()
+
+coordinate = coordinate.sorted(by: { (left, right) -> Bool in
+    if left[0] == right[0] {
+        return left[1] < right[1]
+    }else {
+        return left[0] < right[0]
+    }
+    
+})
+
+for index in 0..<number {
+    print("\(coordinate[index][0]) \(coordinate[index][1])")
+}
