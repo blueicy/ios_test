@@ -1171,24 +1171,47 @@ func merge(_ left:[Int],_ right:[Int]) -> [Int] {
 
 //2차원 좌표정렬
 //11651
-let number = Int(readLine()!)!
+//let number = Int(readLine()!)!
+//
+//var coordinate = [[Int]](repeating: Array(repeating: 0, count: 2), count: number)
+//
+//for index in 0..<number {
+//    let aCoord = readLine()!.split(separator: " ").map{ Int($0)! }
+//    coordinate[index][0] = aCoord[0]
+//    coordinate[index][1] = aCoord[1]
+//}
+//
+//coordinate = coordinate.sorted(by: { (left, right) -> Bool in
+//    if left[1] == right[1] {
+//        return left[0] < right[0]
+//    } else {
+//        return left[1] < right[1]
+//    }
+//} )
+//
+//for index in 0..<number {
+//    print("\(coordinate[index][0]) \(coordinate[index][1])")
+//}
 
-var coordinate = [[Int]](repeating: Array(repeating: 0, count: 2), count: number)
+//나이순 정렬
+//10814
 
-for index in 0..<number {
-    let aCoord = readLine()!.split(separator: " ").map{ Int($0)! }
-    coordinate[index][0] = aCoord[0]
-    coordinate[index][1] = aCoord[1]
-}
-
-coordinate = coordinate.sorted(by: { (left, right) -> Bool in
-    if left[1] == right[1] {
-        return left[0] < right[0]
-    } else {
-        return left[1] < right[1]
+func _10814() {
+    let number = Int(readLine()!)!
+    
+    var array = [(Int, String)]()
+    
+    for _ in 0..<number {
+        var tempArray = readLine()!.split(separator: " ").map{ String($0) }
+        array.append((Int(tempArray[0])!, tempArray[1]))
     }
-} )
-
-for index in 0..<number {
-    print("\(coordinate[index][0]) \(coordinate[index][1])")
+    
+    array = array.sorted { (left, right) -> Bool in
+        return left.0 < right.0
+    }
+    for index in 0..<number {
+        print("\(array[index].0) \(array[index].1)")
+    }
 }
+
+_10814()
