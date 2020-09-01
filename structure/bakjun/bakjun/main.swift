@@ -1215,3 +1215,129 @@ func _10814() {
 }
 
 _10814()
+
+//import Foundation
+//
+//struct ReadInput {
+//
+//    private var currentIndex: Int = 0
+//    private var inputArray: [String] = []
+//
+//    // 데이터를 배열로 변환
+//    public mutating func readLineToArray() -> [String] {
+//
+//        guard let result = readLine() else {
+//            return []
+//        }
+//
+//        return result.components(separatedBy: " ")
+//    }
+//
+//    // 띄어쓰기 단위로 String 읽기
+//    public mutating func read() -> String {
+//        if inputArray.count == 0 {
+//            inputArray = self.readLineToArray()
+//        }
+//        let result = inputArray[inputArray.index(after: currentIndex-1)]
+//        currentIndex += 1
+//
+//        if currentIndex == inputArray.count {
+//            self.inputArray.removeAll()
+//            self.currentIndex = 0
+//        }
+//
+//        return result
+//    }
+//
+//    // Int 데이터 읽기
+//    public mutating func readInt() -> Int {
+//        guard let result = Int(self.read()) else {
+//            fatalError("Int형 데이터가 아닙니다.")
+//        }
+//
+//        return result
+//    }
+//
+//    // Double 데이터 읽기
+//    public mutating func readDouble() -> Double {
+//        guard let result = Double(self.read()) else {
+//            fatalError("Double형 데이터가 아닙니다.")
+//        }
+//
+//        return result
+//    }
+//}
+//
+//
+//func _10989() {
+//    let number = Int(readLine()!)!
+//    var ri = ReadInput()
+//
+//    var array = [Int]()
+//
+//    for _ in 0..<number {
+//        array.append(ri.readInt())
+//    }
+////    array = array.sorted { (left, right) -> Bool in
+////        return left < right
+////    }
+//    array.sort()
+//
+//    for index in 0..<number {
+//        print(array[index])
+//    }
+//}
+//_10989()
+//
+//
+//func _11652() {
+//    let number = Int64(readLine()!)!
+//
+//    var dict = [Int64:Int64]();
+//
+//    for _ in 0..<number {
+//        let temp = Int64(readLine()!)!
+//        if let currnet = dict[temp] {
+//            dict[temp] = currnet + 1;
+//        } else {
+//            dict.updateValue(1, forKey: temp)
+//        }
+//    }
+//
+//    let sorted = dict.sorted(by: { (left, right) -> Bool in
+//        return left.value > right.value
+//    })
+//
+//    var sorted2nd = sorted[0].key
+//    var max = sorted[0].value
+//
+//    for index in 1..<sorted.count {
+//        if max == sorted[index].value {
+//            if sorted2nd > sorted[index].key {
+//                sorted2nd = sorted[index].key
+//            }
+//        } else {
+//            break
+//        }
+//
+//    }
+//
+//    print(sorted2nd)
+//
+//}
+//
+//_11652()
+
+//11004
+//K번째 수
+
+func _11004() {
+    let numbers = readLine()!.split(separator: " ").map{ Int($0)! }
+    var sort = readLine()!.split(separator: " ").map{ Int($0)! }
+    
+    sort.sort()
+    print(sort[numbers[1]-1])
+    
+}
+_11004()
+
