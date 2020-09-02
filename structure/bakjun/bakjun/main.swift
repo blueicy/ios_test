@@ -1196,25 +1196,25 @@ func merge(_ left:[Int],_ right:[Int]) -> [Int] {
 //나이순 정렬
 //10814
 
-func _10814() {
-    let number = Int(readLine()!)!
-    
-    var array = [(Int, String)]()
-    
-    for _ in 0..<number {
-        var tempArray = readLine()!.split(separator: " ").map{ String($0) }
-        array.append((Int(tempArray[0])!, tempArray[1]))
-    }
-    
-    array = array.sorted { (left, right) -> Bool in
-        return left.0 < right.0
-    }
-    for index in 0..<number {
-        print("\(array[index].0) \(array[index].1)")
-    }
-}
-
-_10814()
+//func _10814() {
+//    let number = Int(readLine()!)!
+//
+//    var array = [(Int, String)]()
+//
+//    for _ in 0..<number {
+//        var tempArray = readLine()!.split(separator: " ").map{ String($0) }
+//        array.append((Int(tempArray[0])!, tempArray[1]))
+//    }
+//
+//    array = array.sorted { (left, right) -> Bool in
+//        return left.0 < right.0
+//    }
+//    for index in 0..<number {
+//        print("\(array[index].0) \(array[index].1)")
+//    }
+//}
+//
+//_10814()
 
 //import Foundation
 //
@@ -1330,13 +1330,47 @@ _10814()
 
 //11004
 //K번째 수
+//퀵 셀렉션
+
+
+func quick_selection(_ arr:[Int], _ kth:Int) -> Int {
+    let pivot = arr[(arr.count+1)/2 - 1]
+    var left = [Int]()
+    var mid = [Int]()
+    var right = [Int]()
+    
+    let arrCount = arr.count
+    for index in 0..<arrCount {
+        if arr[index] < pivot {
+            left.append(arr[index])
+        } else if arr[index] > pivot {
+            right.append(arr[index])
+        } else {
+            mid.append(arr[index])
+        }
+    }
+    
+    let leftCount = left.count
+    let midCount = mid.count
+    
+    if kth < leftCount {
+        return quick_selection(left, kth)
+    } else if kth < leftCount + midCount {
+        return mid[0]
+    } else {
+        return quick_selection(right, kth - leftCount - midCount)
+    }
+    
+}
+
+
 
 func _11004() {
     let numbers = readLine()!.split(separator: " ").map{ Int($0)! }
-    var sort = readLine()!.split(separator: " ").map{ Int($0)! }
+    let notSort = readLine()!.split(separator: " ").map{ Int($0)! }
     
-    sort.sort()
-    print(sort[numbers[1]-1])
+//    sort = mergeSort(sort)
+    print(quick_selection(notSort, numbers[1]-1))
     
 }
 _11004()
