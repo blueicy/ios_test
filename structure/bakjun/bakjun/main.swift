@@ -1338,7 +1338,7 @@ func quick_selection(_ arr:[Int], _ kth:Int) -> Int {
     var left = [Int]()
     var mid = [Int]()
     var right = [Int]()
-    
+
     let arrCount = arr.count
     for index in 0..<arrCount {
         if arr[index] < pivot {
@@ -1349,10 +1349,10 @@ func quick_selection(_ arr:[Int], _ kth:Int) -> Int {
             mid.append(arr[index])
         }
     }
-    
+
     let leftCount = left.count
     let midCount = mid.count
-    
+
     if kth < leftCount {
         return quick_selection(left, kth)
     } else if kth < leftCount + midCount {
@@ -1360,18 +1360,87 @@ func quick_selection(_ arr:[Int], _ kth:Int) -> Int {
     } else {
         return quick_selection(right, kth - leftCount - midCount)
     }
+
+}
+//
+//
+//
+//func _11004() {
+//    let numbers = readLine()!.split(separator: " ").map{ Int($0)! }
+//    let notSort = readLine()!.split(separator: " ").map{ Int($0)! }
+//
+////    sort = mergeSort(sort)
+//    print(quick_selection(notSort, numbers[1]-1))
+//
+//}
+//_11004()
+
+public struct Stack<T> {
+    private var elements = Array<T>()
+    public init() {}
+    
+    public mutating func pop() -> T? {
+        return self.elements.popLast()
+    }
+    
+    public mutating func push(element: T) {
+        self.elements.append(element)
+    }
+    
+    public func peek() -> T? {
+        return self.elements.last
+    }
+    
+    public var isEmpty: Bool {
+        return self.elements.isEmpty
+    }
+    
+    public var count: Int {
+        return self.elements.count
+    }
+}
+
+extension Stack: CustomStringConvertible {
+    public var description: String {
+        return self.elements.description
+    }
+}
+
+func _10828() {
+    let number = Int(readLine()!)!
+    var myStack = Stack<Int>()
+    for _ in 0..<number {
+        let order = readLine()!.split(separator: " ").map( { String($0) } )
+        
+        switch order[0] {
+        case "push":
+            myStack.push(element: Int(order[1])!)
+        case "pop":
+            if let number = myStack.pop(){
+                print(number)
+            } else {
+              print(-1)
+            }
+        case "size":
+            print(myStack.count)
+        case "empty":
+            if myStack.isEmpty {
+                print("1")
+            } else {
+                print("0")
+            }
+        case "top":
+            if let number = myStack.peek(){
+                print(number)
+            } else {
+                print(-1)
+            }
+        default:
+            print("ERROR")
+        }
+    }
     
 }
 
-
-
-func _11004() {
-    let numbers = readLine()!.split(separator: " ").map{ Int($0)! }
-    let notSort = readLine()!.split(separator: " ").map{ Int($0)! }
-    
-//    sort = mergeSort(sort)
-    print(quick_selection(notSort, numbers[1]-1))
-    
-}
-_11004()
+_10828()
 
