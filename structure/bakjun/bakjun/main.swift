@@ -1406,41 +1406,75 @@ extension Stack: CustomStringConvertible {
     }
 }
 
-func _10828() {
+//func _10828() {
+//    let number = Int(readLine()!)!
+//    var myStack = Stack<Int>()
+//    for _ in 0..<number {
+//        let order = readLine()!.split(separator: " ").map( { String($0) } )
+//
+//        switch order[0] {
+//        case "push":
+//            myStack.push(element: Int(order[1])!)
+//        case "pop":
+//            if let number = myStack.pop(){
+//                print(number)
+//            } else {
+//              print(-1)
+//            }
+//        case "size":
+//            print(myStack.count)
+//        case "empty":
+//            if myStack.isEmpty {
+//                print("1")
+//            } else {
+//                print("0")
+//            }
+//        case "top":
+//            if let number = myStack.peek(){
+//                print(number)
+//            } else {
+//                print(-1)
+//            }
+//        default:
+//            print("ERROR")
+//        }
+//    }
+//
+//}
+//
+//_10828()
+
+func _9012(){
     let number = Int(readLine()!)!
-    var myStack = Stack<Int>()
+
     for _ in 0..<number {
-        let order = readLine()!.split(separator: " ").map( { String($0) } )
-        
-        switch order[0] {
-        case "push":
-            myStack.push(element: Int(order[1])!)
-        case "pop":
-            if let number = myStack.pop(){
-                print(number)
-            } else {
-              print(-1)
+        let inputArray = Array(readLine()!).map{ String($0) }
+
+        var counter = 0
+        var myStack = Stack<String>()
+
+        for i in 0..<inputArray.count {
+            switch inputArray[i] {
+            case "(":
+                myStack.push(element: "(")
+                counter = counter + 1
+            case ")":
+                let temp = myStack.pop()
+                counter = counter - 1
+                
+            default:
+                print("ERROR")
             }
-        case "size":
-            print(myStack.count)
-        case "empty":
-            if myStack.isEmpty {
-                print("1")
-            } else {
-                print("0")
-            }
-        case "top":
-            if let number = myStack.peek(){
-                print(number)
-            } else {
-                print(-1)
-            }
-        default:
-            print("ERROR")
+        }
+
+        if myStack.isEmpty && counter == 0 {
+            print("YES")
+        }else{
+            print("NO")
         }
     }
-    
 }
 
-_10828()
 
+
+_9012()
