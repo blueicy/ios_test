@@ -1444,37 +1444,64 @@ extension Stack: CustomStringConvertible {
 //
 //_10828()
 
-func _9012(){
-    let number = Int(readLine()!)!
+//func _9012(){
+//    let number = Int(readLine()!)!
+//
+//    for _ in 0..<number {
+//        let inputArray = Array(readLine()!).map{ String($0) }
+//
+//        var counter = 0
+//        var myStack = Stack<String>()
+//
+//        for i in 0..<inputArray.count {
+//            switch inputArray[i] {
+//            case "(":
+//                myStack.push(element: "(")
+//                counter = counter + 1
+//            case ")":
+//                let temp = myStack.pop()
+//                counter = counter - 1
+//
+//            default:
+//                print("ERROR")
+//            }
+//        }
+//
+//        if myStack.isEmpty && counter == 0 {
+//            print("YES")
+//        }else{
+//            print("NO")
+//        }
+//    }
+//}
+//
+//_9012()
 
-    for _ in 0..<number {
-        let inputArray = Array(readLine()!).map{ String($0) }
 
-        var counter = 0
-        var myStack = Stack<String>()
-
-        for i in 0..<inputArray.count {
-            switch inputArray[i] {
-            case "(":
-                myStack.push(element: "(")
-                counter = counter + 1
-            case ")":
-                let temp = myStack.pop()
-                counter = counter - 1
-                
-            default:
-                print("ERROR")
+func _10799() {
+    let inputArray = Array(readLine()!.map({ String($0)}))
+    
+    var myStack = Stack<String>()
+    
+    var answer = 0
+    
+    for index in 0..<inputArray.count {
+        if inputArray[index] == "(" {
+            myStack.push(element: "(")
+        } else {
+            if inputArray[index-1] == "(" {
+                myStack.pop()
+                answer += myStack.count
+            } else {
+                myStack.pop()
+                answer += 1
             }
         }
-
-        if myStack.isEmpty && counter == 0 {
-            print("YES")
-        }else{
-            print("NO")
-        }
+        
     }
+    
+    print(answer)
+    
 }
 
-
-
-_9012()
+_10799()
