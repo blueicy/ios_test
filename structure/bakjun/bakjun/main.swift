@@ -1477,31 +1477,137 @@ extension Stack: CustomStringConvertible {
 //
 //_9012()
 
+//
+//func _10799() {
+//    let inputArray = Array(readLine()!.map({ String($0)}))
+//
+//    var myStack = Stack<String>()
+//
+//    var answer = 0
+//
+//    for index in 0..<inputArray.count {
+//        if inputArray[index] == "(" {
+//            myStack.push(element: "(")
+//        } else {
+//            if inputArray[index-1] == "(" {
+//                myStack.pop()
+//                answer += myStack.count
+//            } else {
+//                myStack.pop()
+//                answer += 1
+//            }
+//        }
+//
+//    }
+//
+//    print(answer)
+//
+//}
+//
+//_10799()
 
-func _10799() {
-    let inputArray = Array(readLine()!.map({ String($0)}))
+
+public struct Queue<T> {
+    internal var data = Array<T>()
+    public init() {}
     
-    var myStack = Stack<String>()
-    
-    var answer = 0
-    
-    for index in 0..<inputArray.count {
-        if inputArray[index] == "(" {
-            myStack.push(element: "(")
+    public mutating func dequeue() -> T? {
+        if data.isEmpty == false {
+            return data.removeFirst()
         } else {
-            if inputArray[index-1] == "(" {
-                myStack.pop()
-                answer += myStack.count
-            } else {
-                myStack.pop()
-                answer += 1
-            }
+            return T.self as? T
         }
-        
     }
     
-    print(answer)
+    public func peek() -> T? {
+        return data.first
+    }
+    
+    public func lastPeek() -> T? {
+        return data.last
+    }
+    
+    public mutating func enqueue(element: T) {
+        data.append(element)
+    }
+    
+    public mutating func clear() {
+        data.removeAll()
+    }
+    
+    public var count: Int {
+        return data.count
+    }
+    
+    public var capacity: Int {
+        get {
+            return data.capacity
+        }
+        set {
+            data.reserveCapacity(newValue)
+        }
+    }
+    
+    public func isFull() -> Bool {
+        return count == data.capacity
+    }
+    
+    public func isEmpty() -> Bool {
+        return data.isEmpty
+    }
+}
+
+extension Queue: CustomStringConvertible {
+    public var description: String {
+        return data.description
+    }
+}
+
+func _10845() {
+    
+    let number = Int(readLine()!)!
+    
+    var myQueue = Queue<Int>()
+    
+    for index in 0..<number {
+        let orders = readLine()!.split(separator: " ").map{ String($0) }
+        
+        switch orders[0] {
+        case "push":
+            myQueue.enqueue(element: Int(orders[1])!)
+            break
+        case "pop":
+            if let popNumber = myQueue.dequeue(){
+                print(popNumber)
+            } else {
+                print(-1)
+            }
+        case "size":
+            print(myQueue.count)
+    
+        case "empty":
+            if myQueue.isEmpty(){
+                print(1)
+            } else {
+                print(0)
+            }
+        case "front":
+            if let peekNumber = myQueue.peek(){
+                print(peekNumber)
+            } else {
+                print(-1)
+            }
+        case "back":
+            if let lastPeekNumber = myQueue.lastPeek(){
+                print(lastPeekNumber)
+            } else {
+                print(-1)
+            }
+        default:
+            print("ERR")
+        }
+    }
     
 }
 
-_10799()
+_10845()
