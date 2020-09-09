@@ -1563,46 +1563,149 @@ extension Queue: CustomStringConvertible {
     }
 }
 
-func _10845() {
+//func _10845() {
+//
+//    let number = Int(readLine()!)!
+//
+//    var myQueue = Queue<Int>()
+//
+//    for index in 0..<number {
+//        let orders = readLine()!.split(separator: " ").map{ String($0) }
+//
+//        switch orders[0] {
+//        case "push":
+//            myQueue.enqueue(element: Int(orders[1])!)
+//            break
+//        case "pop":
+//            if let popNumber = myQueue.dequeue(){
+//                print(popNumber)
+//            } else {
+//                print(-1)
+//            }
+//        case "size":
+//            print(myQueue.count)
+//
+//        case "empty":
+//            if myQueue.isEmpty(){
+//                print(1)
+//            } else {
+//                print(0)
+//            }
+//        case "front":
+//            if let peekNumber = myQueue.peek(){
+//                print(peekNumber)
+//            } else {
+//                print(-1)
+//            }
+//        case "back":
+//            if let lastPeekNumber = myQueue.lastPeek(){
+//                print(lastPeekNumber)
+//            } else {
+//                print(-1)
+//            }
+//        default:
+//            print("ERR")
+//        }
+//    }
+//
+//}
+//
+//_10845()
+
+public struct Deque<T> {
+    internal var data = Array<T>()
     
+    public init() {}
+    
+    public mutating func pushFront(element: T) {
+        return data.insert(element, at: 0)
+    }
+    
+    public mutating func pushBack(element: T) {
+        return data.append(element)
+    }
+    
+    public mutating func popFront() -> T? {
+        if data.isEmpty == false {
+            return data.removeFirst()
+        } else {
+            return T.self as? T
+        }
+    }
+    
+    public mutating func popBack() -> T? {
+        if data.isEmpty == false {
+            return data.removeLast()
+        } else {
+            return T.self as? T
+        }
+    }
+    
+    public var count: Int {
+        return data.count
+    }
+    
+    public var isEmpty: Bool {
+        return data.isEmpty
+    }
+    
+    public func pick() -> T? {
+        return data.first
+    }
+    
+    public func lastPick() -> T? {
+        return data.last
+    }
+}
+
+func _10866() {
     let number = Int(readLine()!)!
     
-    var myQueue = Queue<Int>()
+    var myDeque = Deque<Int>()
     
-    for index in 0..<number {
-        let orders = readLine()!.split(separator: " ").map{ String($0) }
+    
+    for _ in 0..<number {
         
-        switch orders[0] {
-        case "push":
-            myQueue.enqueue(element: Int(orders[1])!)
-            break
-        case "pop":
-            if let popNumber = myQueue.dequeue(){
-                print(popNumber)
+        let order = readLine()!.split(separator: " ").map{ String($0) }
+        
+        switch order[0] {
+        case "push_front":
+            myDeque.pushFront(element: Int(order[1])!)
+        case "push_back":
+            myDeque.pushBack(element: Int(order[1])!)
+        case "pop_front":
+            if let number = myDeque.popFront() {
+                print(number)
+            } else {
+                print(-1)
+            }
+        case "pop_back":
+            if let number = myDeque.popBack() {
+                print(number)
             } else {
                 print(-1)
             }
         case "size":
-            print(myQueue.count)
-    
+            print(myDeque.count)
         case "empty":
-            if myQueue.isEmpty(){
+            if myDeque.isEmpty {
                 print(1)
             } else {
                 print(0)
             }
         case "front":
-            if let peekNumber = myQueue.peek(){
-                print(peekNumber)
+            if let number = myDeque.pick() {
+                print(number)
             } else {
                 print(-1)
             }
         case "back":
-            if let lastPeekNumber = myQueue.lastPeek(){
-                print(lastPeekNumber)
+            if let number = myDeque.lastPick() {
+                print(number)
             } else {
                 print(-1)
             }
+            
         default:
             print("ERR")
         }
@@ -1610,4 +1713,4 @@ func _10845() {
     
 }
 
-_10845()
+_10866()
