@@ -1506,6 +1506,7 @@ extension Stack: CustomStringConvertible {
 //
 //_10799()
 
+// 큐 구조체
 
 public struct Queue<T> {
     internal var data = Array<T>()
@@ -1612,6 +1613,8 @@ extension Queue: CustomStringConvertible {
 //
 //_10845()
 
+//덱 구조체
+
 public struct Deque<T> {
     internal var data = Array<T>()
     
@@ -1658,59 +1661,138 @@ public struct Deque<T> {
     }
 }
 
-func _10866() {
-    let number = Int(readLine()!)!
+//
+//func _10866() {
+//    let number = Int(readLine()!)!
+//
+//    var myDeque = Deque<Int>()
+//
+//
+//    for _ in 0..<number {
+//
+//        let order = readLine()!.split(separator: " ").map{ String($0) }
+//
+//        switch order[0] {
+//        case "push_front":
+//            myDeque.pushFront(element: Int(order[1])!)
+//        case "push_back":
+//            myDeque.pushBack(element: Int(order[1])!)
+//        case "pop_front":
+//            if let number = myDeque.popFront() {
+//                print(number)
+//            } else {
+//                print(-1)
+//            }
+//        case "pop_back":
+//            if let number = myDeque.popBack() {
+//                print(number)
+//            } else {
+//                print(-1)
+//            }
+//        case "size":
+//            print(myDeque.count)
+//        case "empty":
+//            if myDeque.isEmpty {
+//                print(1)
+//            } else {
+//                print(0)
+//            }
+//        case "front":
+//            if let number = myDeque.pick() {
+//                print(number)
+//            } else {
+//                print(-1)
+//            }
+//        case "back":
+//            if let number = myDeque.lastPick() {
+//                print(number)
+//            } else {
+//                print(-1)
+//            }
+//
+//        default:
+//            print("ERR")
+//        }
+//    }
+//
+//}
+//
+//_10866()
+
+func _10808(){
+    let word = Array(readLine()!).map{ String($0) }
     
-    var myDeque = Deque<Int>()
+    var wordCount = Array(repeating: 0, count: 26)
     
-    
-    for _ in 0..<number {
-        
-        let order = readLine()!.split(separator: " ").map{ String($0) }
-        
-        switch order[0] {
-        case "push_front":
-            myDeque.pushFront(element: Int(order[1])!)
-        case "push_back":
-            myDeque.pushBack(element: Int(order[1])!)
-        case "pop_front":
-            if let number = myDeque.popFront() {
-                print(number)
-            } else {
-                print(-1)
-            }
-        case "pop_back":
-            if let number = myDeque.popBack() {
-                print(number)
-            } else {
-                print(-1)
-            }
-        case "size":
-            print(myDeque.count)
-        case "empty":
-            if myDeque.isEmpty {
-                print(1)
-            } else {
-                print(0)
-            }
-        case "front":
-            if let number = myDeque.pick() {
-                print(number)
-            } else {
-                print(-1)
-            }
-        case "back":
-            if let number = myDeque.lastPick() {
-                print(number)
-            } else {
-                print(-1)
-            }
-            
+    for index in 0..<word.count{
+        switch word[index] {
+        case "a":
+            wordCount[0] = wordCount[0] + 1
+        case "b":
+            wordCount[1] += 1
+        case "c":
+            wordCount[2] += 1
+        case "d":
+            wordCount[3] += 1
+        case "e":
+            wordCount[4] += 1
+        case "f":
+            wordCount[5] += 1
+        case "g":
+            wordCount[6] += 1
+        case "h":
+            wordCount[7] += 1
+        case "i":
+            wordCount[8] += 1
+        case "j":
+            wordCount[9] += 1
+        case "k":
+            wordCount[10] += 1
+        case "l":
+            wordCount[11] += 1
+        case "m":
+            wordCount[12] += 1
+        case "n":
+            wordCount[13] += 1
+        case "o":
+            wordCount[14] += 1
+        case "p":
+            wordCount[15] += 1
+        case "q":
+            wordCount[16] += 1
+        case "r":
+            wordCount[17] += 1
+        case "s":
+            wordCount[18] += 1
+        case "t":
+            wordCount[19] += 1
+        case "u":
+            wordCount[20] += 1
+        case "v":
+            wordCount[21] += 1
+        case "w":
+            wordCount[22] += 1
+        case "x":
+            wordCount[23] += 1
+        case "y":
+            wordCount[24] += 1
+        case "z":
+            wordCount[25] += 1
         default:
-            print("ERR")
+            let empty = 0
         }
     }
     
+    var counter = String("")
+    
+    for index in 0..<wordCount.count{
+        counter.append(String(wordCount[index]))
+        if index < (wordCount.count - 1) {
+            counter.append(" ")
+        }
+    }
+    
+    print(counter)
+    
 }
-
-_10866()
+_10808()
