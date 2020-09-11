@@ -1800,132 +1800,172 @@ public struct Deque<T> {
 //_10808()
 
 
-func _10809(){
-    let word = Array(readLine()!).map{ String($0) }
-    
-    var wordCount = Array(repeating: -1, count: 26)
-    
-    for index in 0..<word.count{
-        switch word[index] {
-        case "a":
-            if wordCount[0] == -1 {
-                wordCount[0] += index + 1
+//func _10809(){
+//    let word = Array(readLine()!).map{ String($0) }
+//
+//    var wordCount = Array(repeating: -1, count: 26)
+//
+//    for index in 0..<word.count{
+//        switch word[index] {
+//        case "a":
+//            if wordCount[0] == -1 {
+//                wordCount[0] += index + 1
+//            }
+//        case "b":
+//            if wordCount[1] == -1 {
+//                wordCount[1] += index + 1
+//            }
+//        case "c":
+//            if wordCount[2] == -1 {
+//                wordCount[2] += index + 1
+//            }
+//        case "d":
+//            if wordCount[3] == -1 {
+//                wordCount[3] += index + 1
+//            }
+//        case "e":
+//            if wordCount[4] == -1 {
+//                wordCount[4] += index + 1
+//            }
+//        case "f":
+//            if wordCount[5] == -1 {
+//                wordCount[5] += index + 1
+//            }
+//        case "g":
+//            if wordCount[6] == -1 {
+//                wordCount[6] += index + 1
+//            }
+//        case "h":
+//            if wordCount[7] == -1 {
+//                wordCount[7] += index + 1
+//            }
+//        case "i":
+//            if wordCount[8] == -1 {
+//                wordCount[8] += index + 1
+//            }
+//        case "j":
+//            if wordCount[9] == -1 {
+//                wordCount[9] += index + 1
+//            }
+//        case "k":
+//            if wordCount[10] == -1 {
+//                wordCount[10] += index + 1
+//            }
+//        case "l":
+//            if wordCount[11] == -1 {
+//                wordCount[11] += index + 1
+//            }
+//        case "m":
+//            if wordCount[12] == -1 {
+//                wordCount[12] += index + 1
+//            }
+//        case "n":
+//            if wordCount[13] == -1 {
+//                wordCount[13] += index + 1
+//            }
+//        case "o":
+//            if wordCount[14] == -1 {
+//                wordCount[14] += index + 1
+//            }
+//        case "p":
+//            if wordCount[15] == -1 {
+//                wordCount[15] += index + 1
+//            }
+//        case "q":
+//            if wordCount[16] == -1 {
+//                wordCount[16] += index + 1
+//            }
+//        case "r":
+//            if wordCount[17] == -1 {
+//                wordCount[17] += index + 1
+//            }
+//        case "s":
+//            if wordCount[18] == -1 {
+//                wordCount[18] += index + 1
+//            }
+//        case "t":
+//            if wordCount[19] == -1 {
+//                wordCount[19] += index + 1
+//            }
+//        case "u":
+//            if wordCount[20] == -1 {
+//                wordCount[20] += index + 1
+//            }
+//        case "v":
+//            if wordCount[21] == -1 {
+//                wordCount[21] += index + 1
+//            }
+//        case "w":
+//            if wordCount[22] == -1 {
+//                wordCount[22] += index + 1
+//            }
+//        case "x":
+//            if wordCount[23] == -1 {
+//                wordCount[23] += index + 1
+//            }
+//        case "y":
+//            if wordCount[24] == -1 {
+//                wordCount[24] += index + 1
+//            }
+//        case "z":
+//            if wordCount[25] == -1 {
+//                wordCount[25] += index + 1
+//            }
+//        default:
+//            let empty = 0
+//        }
+//    }
+//
+//    var counter = String("")
+//
+//    for index in 0..<wordCount.count{
+//        counter.append(String(wordCount[index]))
+//        if index < (wordCount.count - 1) {
+//            counter.append(" ")
+//        }
+//    }
+//
+//    print(counter)
+//
+//}
+//_10809()
+
+extension String{
+    func getArrayAfterRegex(regex: String) -> [String] {
+        
+        do {
+            let regex = try NSRegularExpression(pattern: regex)
+            let results = regex.matches(in: self,
+                                        range: NSRange(self.startIndex..., in: self))
+            return results.map {
+                String(self[Range($0.range, in: self)!])
             }
-        case "b":
-            if wordCount[1] == -1 {
-                wordCount[1] += index + 1
-            }
-        case "c":
-            if wordCount[2] == -1 {
-                wordCount[2] += index + 1
-            }
-        case "d":
-            if wordCount[3] == -1 {
-                wordCount[3] += index + 1
-            }
-        case "e":
-            if wordCount[4] == -1 {
-                wordCount[4] += index + 1
-            }
-        case "f":
-            if wordCount[5] == -1 {
-                wordCount[5] += index + 1
-            }
-        case "g":
-            if wordCount[6] == -1 {
-                wordCount[6] += index + 1
-            }
-        case "h":
-            if wordCount[7] == -1 {
-                wordCount[7] += index + 1
-            }
-        case "i":
-            if wordCount[8] == -1 {
-                wordCount[8] += index + 1
-            }
-        case "j":
-            if wordCount[9] == -1 {
-                wordCount[9] += index + 1
-            }
-        case "k":
-            if wordCount[10] == -1 {
-                wordCount[10] += index + 1
-            }
-        case "l":
-            if wordCount[11] == -1 {
-                wordCount[11] += index + 1
-            }
-        case "m":
-            if wordCount[12] == -1 {
-                wordCount[12] += index + 1
-            }
-        case "n":
-            if wordCount[13] == -1 {
-                wordCount[13] += index + 1
-            }
-        case "o":
-            if wordCount[14] == -1 {
-                wordCount[14] += index + 1
-            }
-        case "p":
-            if wordCount[15] == -1 {
-                wordCount[15] += index + 1
-            }
-        case "q":
-            if wordCount[16] == -1 {
-                wordCount[16] += index + 1
-            }
-        case "r":
-            if wordCount[17] == -1 {
-                wordCount[17] += index + 1
-            }
-        case "s":
-            if wordCount[18] == -1 {
-                wordCount[18] += index + 1
-            }
-        case "t":
-            if wordCount[19] == -1 {
-                wordCount[19] += index + 1
-            }
-        case "u":
-            if wordCount[20] == -1 {
-                wordCount[20] += index + 1
-            }
-        case "v":
-            if wordCount[21] == -1 {
-                wordCount[21] += index + 1
-            }
-        case "w":
-            if wordCount[22] == -1 {
-                wordCount[22] += index + 1
-            }
-        case "x":
-            if wordCount[23] == -1 {
-                wordCount[23] += index + 1
-            }
-        case "y":
-            if wordCount[24] == -1 {
-                wordCount[24] += index + 1
-            }
-        case "z":
-            if wordCount[25] == -1 {
-                wordCount[25] += index + 1
-            }
-        default:
-            let empty = 0
+        } catch let error {
+            print("invalid regex: \(error.localizedDescription)")
+            return []
         }
     }
+}
+
+
+func _10820() {
+
+    let letter = Array(readLine()!).map{ String($0) }
     
-    var counter = String("")
+    var number = 0
+    var upperCast = 0
+    var lowerCast = 0
+    var space = 0
     
-    for index in 0..<wordCount.count{
-        counter.append(String(wordCount[index]))
-        if index < (wordCount.count - 1) {
-            counter.append(" ")
-        }
+    for index in 0..<letter.count {
+        number += letter[index].getArrayAfterRegex(regex:"^[0-9]").count
+        upperCast += letter[index].getArrayAfterRegex(regex: "^[A-Z]").count
+        lowerCast += letter[index].getArrayAfterRegex(regex: "^[a-z]").count
+        space += letter[index].getArrayAfterRegex(regex: "( )").count
     }
+    print("\(lowerCast) \(upperCast) \(number) \(space)")
     
-    print(counter)
     
 }
-_10809()
+
+_10820()
