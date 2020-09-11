@@ -1719,65 +1719,198 @@ public struct Deque<T> {
 //
 //_10866()
 
-func _10808(){
+// 공백없는 string
+//
+//func _10808(){
+//    let word = Array(readLine()!).map{ String($0) }
+//
+//    var wordCount = Array(repeating: 0, count: 26)
+//
+//    for index in 0..<word.count{
+//        switch word[index] {
+//        case "a":
+//            wordCount[0] = wordCount[0] + 1
+//        case "b":
+//            wordCount[1] += 1
+//        case "c":
+//            wordCount[2] += 1
+//        case "d":
+//            wordCount[3] += 1
+//        case "e":
+//            wordCount[4] += 1
+//        case "f":
+//            wordCount[5] += 1
+//        case "g":
+//            wordCount[6] += 1
+//        case "h":
+//            wordCount[7] += 1
+//        case "i":
+//            wordCount[8] += 1
+//        case "j":
+//            wordCount[9] += 1
+//        case "k":
+//            wordCount[10] += 1
+//        case "l":
+//            wordCount[11] += 1
+//        case "m":
+//            wordCount[12] += 1
+//        case "n":
+//            wordCount[13] += 1
+//        case "o":
+//            wordCount[14] += 1
+//        case "p":
+//            wordCount[15] += 1
+//        case "q":
+//            wordCount[16] += 1
+//        case "r":
+//            wordCount[17] += 1
+//        case "s":
+//            wordCount[18] += 1
+//        case "t":
+//            wordCount[19] += 1
+//        case "u":
+//            wordCount[20] += 1
+//        case "v":
+//            wordCount[21] += 1
+//        case "w":
+//            wordCount[22] += 1
+//        case "x":
+//            wordCount[23] += 1
+//        case "y":
+//            wordCount[24] += 1
+//        case "z":
+//            wordCount[25] += 1
+//        default:
+//            let empty = 0
+//        }
+//    }
+//
+//    var counter = String("")
+//
+//    for index in 0..<wordCount.count{
+//        counter.append(String(wordCount[index]))
+//        if index < (wordCount.count - 1) {
+//            counter.append(" ")
+//        }
+//    }
+//
+//    print(counter)
+//
+//}
+//_10808()
+
+
+func _10809(){
     let word = Array(readLine()!).map{ String($0) }
     
-    var wordCount = Array(repeating: 0, count: 26)
+    var wordCount = Array(repeating: -1, count: 26)
     
     for index in 0..<word.count{
         switch word[index] {
         case "a":
-            wordCount[0] = wordCount[0] + 1
+            if wordCount[0] == -1 {
+                wordCount[0] += index + 1
+            }
         case "b":
-            wordCount[1] += 1
+            if wordCount[1] == -1 {
+                wordCount[1] += index + 1
+            }
         case "c":
-            wordCount[2] += 1
+            if wordCount[2] == -1 {
+                wordCount[2] += index + 1
+            }
         case "d":
-            wordCount[3] += 1
+            if wordCount[3] == -1 {
+                wordCount[3] += index + 1
+            }
         case "e":
-            wordCount[4] += 1
+            if wordCount[4] == -1 {
+                wordCount[4] += index + 1
+            }
         case "f":
-            wordCount[5] += 1
+            if wordCount[5] == -1 {
+                wordCount[5] += index + 1
+            }
         case "g":
-            wordCount[6] += 1
+            if wordCount[6] == -1 {
+                wordCount[6] += index + 1
+            }
         case "h":
-            wordCount[7] += 1
+            if wordCount[7] == -1 {
+                wordCount[7] += index + 1
+            }
         case "i":
-            wordCount[8] += 1
+            if wordCount[8] == -1 {
+                wordCount[8] += index + 1
+            }
         case "j":
-            wordCount[9] += 1
+            if wordCount[9] == -1 {
+                wordCount[9] += index + 1
+            }
         case "k":
-            wordCount[10] += 1
+            if wordCount[10] == -1 {
+                wordCount[10] += index + 1
+            }
         case "l":
-            wordCount[11] += 1
+            if wordCount[11] == -1 {
+                wordCount[11] += index + 1
+            }
         case "m":
-            wordCount[12] += 1
+            if wordCount[12] == -1 {
+                wordCount[12] += index + 1
+            }
         case "n":
-            wordCount[13] += 1
+            if wordCount[13] == -1 {
+                wordCount[13] += index + 1
+            }
         case "o":
-            wordCount[14] += 1
+            if wordCount[14] == -1 {
+                wordCount[14] += index + 1
+            }
         case "p":
-            wordCount[15] += 1
+            if wordCount[15] == -1 {
+                wordCount[15] += index + 1
+            }
         case "q":
-            wordCount[16] += 1
+            if wordCount[16] == -1 {
+                wordCount[16] += index + 1
+            }
         case "r":
-            wordCount[17] += 1
+            if wordCount[17] == -1 {
+                wordCount[17] += index + 1
+            }
         case "s":
-            wordCount[18] += 1
+            if wordCount[18] == -1 {
+                wordCount[18] += index + 1
+            }
         case "t":
-            wordCount[19] += 1
+            if wordCount[19] == -1 {
+                wordCount[19] += index + 1
+            }
         case "u":
-            wordCount[20] += 1
+            if wordCount[20] == -1 {
+                wordCount[20] += index + 1
+            }
         case "v":
-            wordCount[21] += 1
+            if wordCount[21] == -1 {
+                wordCount[21] += index + 1
+            }
         case "w":
-            wordCount[22] += 1
+            if wordCount[22] == -1 {
+                wordCount[22] += index + 1
+            }
         case "x":
-            wordCount[23] += 1
+            if wordCount[23] == -1 {
+                wordCount[23] += index + 1
+            }
         case "y":
-            wordCount[24] += 1
+            if wordCount[24] == -1 {
+                wordCount[24] += index + 1
+            }
         case "z":
-            wordCount[25] += 1
+            if wordCount[25] == -1 {
+                wordCount[25] += index + 1
+            }
         default:
             let empty = 0
         }
@@ -1795,4 +1928,4 @@ func _10808(){
     print(counter)
     
 }
-_10808()
+_10809()
