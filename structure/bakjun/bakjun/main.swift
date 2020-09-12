@@ -1930,6 +1930,7 @@ public struct Deque<T> {
 //}
 //_10809()
 
+//정규표현식
 extension String{
     func getArrayAfterRegex(regex: String) -> [String] {
         
@@ -1948,24 +1949,126 @@ extension String{
 }
 
 
-func _10820() {
+//func _10820() {
+//
+//    let letter = Array(readLine()!).map{ String($0) }
+//
+//    var number = 0
+//    var upperCast = 0
+//    var lowerCast = 0
+//    var space = 0
+//
+//    for index in 0..<letter.count {
+//        number += letter[index].getArrayAfterRegex(regex:"^[0-9]").count
+//        upperCast += letter[index].getArrayAfterRegex(regex: "^[A-Z]").count
+//        lowerCast += letter[index].getArrayAfterRegex(regex: "^[a-z]").count
+//        space += letter[index].getArrayAfterRegex(regex: "( )").count
+//    }
+//    print("\(lowerCast) \(upperCast) \(number) \(space)")
+//
+//}
+//
+//_10820()
+//import Foundation
+//
+//func solution(_ new_id:String) -> String {
+//    var convertId = new_id.lowercased()
+////    var arrayString = convertId.getArrayAfterRegex(regex: "(^[a-z0-9]|-|_|.)")
+//    var arrayString = convertId.getArrayAfterRegex(regex: "[^:'?/><~`!@#$%^&*+()=]")
+//    for index in 1..<arrayString.count {
+//        if arrayString[index-1] == "." && arrayString[index] == "." {
+//            arrayString[index-1] = " "
+//        }
+//    }
+//
+//    if arrayString[0] == "." {
+//        arrayString[0] = " "
+//    }
+//
+//    convertId = ""
+//
+//    for index in 0..<arrayString.count {
+//        if arrayString[index] == " " {
+//            arrayString[index] = ""
+//        }
+//        convertId.append(arrayString[index])
+//    }
+//
+//    if convertId.hasPrefix("."){
+//        convertId.remove(at: convertId.startIndex)
+//    }
+//    if convertId.hasSuffix("."){
+//        convertId.popLast()
+//    }
+//
+//    arrayString = convertId.getArrayAfterRegex(regex: "[^:'?/><~`!@#$%^&*()=]")
+//
+//    convertId = ""
+//
+//    if arrayString.count == 0 {
+//        arrayString.append("a")
+//    }
+//
+//
+//    if arrayString.count > 15 {
+//        for index in 0..<15 {
+//            convertId.append(arrayString[index])
+//        }
+//    } else if arrayString.count == 2{
+//        convertId.append(arrayString[0])
+//        convertId.append(arrayString[1])
+//        convertId.append(arrayString[1])
+//    } else if arrayString.count == 1 {
+//        for _ in 0..<3 {
+//            convertId.append(arrayString[0])
+//        }
+//    } else {
+//        for index in 0..<arrayString.count {
+//            convertId.append(arrayString[index])
+//        }
+//    }
+//
+//    if convertId.hasSuffix("."){
+//        convertId.popLast()
+//    }
+//
+//    return convertId
+//}
+//
+//solution(String(readLine()!))
 
-    let letter = Array(readLine()!).map{ String($0) }
+func solution(_ orders:[String], _ course:[Int]) -> [String] {
     
-    var number = 0
-    var upperCast = 0
-    var lowerCast = 0
-    var space = 0
+    var dint = Dictionary[String:Int]()
     
-    for index in 0..<letter.count {
-        number += letter[index].getArrayAfterRegex(regex:"^[0-9]").count
-        upperCast += letter[index].getArrayAfterRegex(regex: "^[A-Z]").count
-        lowerCast += letter[index].getArrayAfterRegex(regex: "^[a-z]").count
-        space += letter[index].getArrayAfterRegex(regex: "( )").count
+    for index1 in 0..<orders.count {
+        for index2 in index1+1..<orders.count {
+            let temp1 = Array(orders[index1])
+            let temp2 = Array(orders[index2])
+            
+            var tempSet1 = Set.init(temp1)
+            var tempSet2 = Set.init(temp2)
+            
+    
+            let intersection = tempSet1.intersection(tempSet2)
+            if intersection.count > 1 {
+                print(intersection)
+            }
+            for index3 in 0..<course.count {
+                if intersection.count == course[index3] {
+                    var intersectionString = intersection.reduce(" ", {$0+$1})
+                    dint.append
+                }
+            }
+        }
+        
     }
-    print("\(lowerCast) \(upperCast) \(number) \(space)")
     
     
+    
+    
+    return []
 }
 
-_10820()
+ 
+solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2,3,4])
