@@ -2037,38 +2037,45 @@ extension String{
 //
 //solution(String(readLine()!))
 
-func solution(_ orders:[String], _ course:[Int]) -> [String] {
-    
-    var dint = Dictionary[String:Int]()
-    
-    for index1 in 0..<orders.count {
-        for index2 in index1+1..<orders.count {
-            let temp1 = Array(orders[index1])
-            let temp2 = Array(orders[index2])
-            
-            var tempSet1 = Set.init(temp1)
-            var tempSet2 = Set.init(temp2)
-            
-    
-            let intersection = tempSet1.intersection(tempSet2)
-            if intersection.count > 1 {
-                print(intersection)
-            }
-            for index3 in 0..<course.count {
-                if intersection.count == course[index3] {
-                    var intersectionString = intersection.reduce(" ", {$0+$1})
-                    dint.append
-                }
-            }
-        }
-        
-    }
-    
-    
-    
-    
-    return []
+//func solution(_ orders:[String], _ course:[Int]) -> [String] {
+//
+//    var dint = Dictionary[String:Int]()
+//
+//    for index1 in 0..<orders.count {
+//        for index2 in index1+1..<orders.count {
+//            let temp1 = Array(orders[index1])
+//            let temp2 = Array(orders[index2])
+//
+//            var tempSet1 = Set.init(temp1)
+//            var tempSet2 = Set.init(temp2)
+//
+//
+//            let intersection = tempSet1.intersection(tempSet2)
+//            if intersection.count > 1 {
+//                print(intersection)
+//            }
+//            for index3 in 0..<course.count {
+//                if intersection.count == course[index3] {
+//                    var intersectionString = intersection.reduce(" ", {$0+$1})
+//                    dint.append
+//                }
+//            }
+//        }
+//
+//    }
+//
+//
+//
+//
+//    return []
+//}
+//
+//
+//solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2,3,4])
+
+func _2743(){
+    let letter = String(readLine()!)
+    print(letter.count)
 }
 
- 
-solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2,3,4])
+_2743()

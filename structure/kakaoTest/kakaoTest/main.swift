@@ -113,71 +113,7 @@ func solution(_ info:[String], _ query:[String]) -> [Int] {
             if (Int(tempQuery[4])! <= newInfo[index2].score || tempQuery[4].contains("-")) && (tempQuery[3] == newInfo[index2].soulFood.rawValue || tempQuery[3].contains("-")) && (tempQuery[2] == newInfo[index2].level.rawValue || tempQuery[2].contains("-")) && (tempQuery[1] == newInfo[index2].end.rawValue || tempQuery[1].contains("-")) && (tempQuery[0] == newInfo[index2].lang.rawValue || tempQuery[0].contains("-")){
                                 resultArray[index1] += 1
             }
-//            if tempQuery[0].contains("-") && tempQuery[1].contains("-") && tempQuery[2].contains("-") && tempQuery[3].contains("-") && tempQuery[4].contains("-") {
-//                resultArray[index1] += 1
-//            } else if tempQuery[0].contains("-") && tempQuery[1].contains("-") && tempQuery[2].contains("-") && tempQuery[3].contains("-") {
-//                if Int(tempQuery[4])! <= newInfo[index2].score {
-//                    resultArray[index1] += 1
-//                }
-//            } else if tempQuery[0].contains("-") && tempQuery[1].contains("-") && tempQuery[2].contains("-") && tempQuery[4].contains("-"){
-//                if tempQuery[3] == newInfo[index2].soulFood.rawValue {
-//                    resultArray[index1] += 1
-//                }
-//
-//            } else if tempQuery[0].contains("-") && tempQuery[1].contains("-") && tempQuery[3].contains("-") && tempQuery[4].contains("-") {
-//                if tempQuery[2] == newInfo[index2].level.rawValue {
-//                    resultArray[index1] += 1
-//                }
-//
-//            } else if tempQuery[0].contains("-") && tempQuery[2].contains("-") && tempQuery[3].contains("-") && tempQuery[4].contains("-") {
-//                if tempQuery[3] == newInfo[index2].soulFood.rawValue {
-//                    resultArray[index1] += 1
-//                }
-//
-//            } else if tempQuery[1].contains("-") && tempQuery[2].contains("-") && tempQuery[3].contains("-") && tempQuery[4].contains("-") {
-//                if tempQuery[0] == newInfo[index2].lang.rawValue {
-//                    resultArray[index1] += 1
-//                }
-//
-//
-//            } else if tempQuery[0].contains("-") && tempQuery[1].contains("-") && tempQuery[2].contains("-") {
-//                if Int(tempQuery[4])! <= newInfo[index2].score && tempQuery[3] == newInfo[index2].soulFood.rawValue {
-//                    resultArray[index1] += 1
-//                }
-//            } else if tempQuery[0].contains("-") && tempQuery[1].contains("-") && tempQuery[3].contains("-"){
-//                if Int(tempQuery[4])! <= newInfo[index2].score && tempQuery[2] == newInfo[index2].level.rawValue {
-//                    resultArray[index1] += 1
-//                }
-//
-//            } else if tempQuery[0].contains("-") && tempQuery[1].contains("-") {
-//                if Int(tempQuery[4])! <= newInfo[index2].score && tempQuery[3] == newInfo[index2].soulFood.rawValue && tempQuery[2] == newInfo[index2].level.rawValue {
-//                    resultArray[index1] += 1
-//                }
-//            } else if tempQuery[0].contains("-") {
-//                if (Int(tempQuery[4])! <= newInfo[index2].score || tempQuery[4].contains("-")) && ( tempQuery[3] == newInfo[index2].soulFood.rawValue || tempQuery[3].contains("-")) && (tempQuery[2] == newInfo[index2].level.rawValue || tempQuery[2].contains("-") ) && (tempQuery[1] == newInfo[index2].end.rawValue || tempQuery[1].contains("-") ){
-//                    resultArray[index1] += 1
-//                }
-//            } else if tempQuery[1].contains("-") {
-//                if (Int(tempQuery[4])! <= newInfo[index2].score || tempQuery[4].contains("-")) && ( tempQuery[3] == newInfo[index2].soulFood.rawValue || tempQuery[3].contains("-")) && (tempQuery[2] == newInfo[index2].level.rawValue || tempQuery[2].contains("-") ) && (tempQuery[0] == newInfo[index2].lang.rawValue || tempQuery[0].contains("-") ){
-//                    resultArray[index1] += 1
-//                }
-//            } else if tempQuery[2].contains("-") {
-//                if (Int(tempQuery[4])! <= newInfo[index2].score || tempQuery[4].contains("-")) && ( tempQuery[3] == newInfo[index2].soulFood.rawValue || tempQuery[3].contains("-")) && (tempQuery[2] == newInfo[index2].level.rawValue || tempQuery[2].contains("-") ) && (tempQuery[0] == newInfo[index2].lang.rawValue || tempQuery[0].contains("-") ){
-//                    resultArray[index1] += 1
-//                }
-//            } else if tempQuery[3].contains("-") {
-//                if Int(tempQuery[4])! <= newInfo[index2].score && tempQuery[2] == newInfo[index2].level.rawValue && tempQuery[1] == newInfo[index2].end.rawValue && tempQuery[0] == newInfo[index2].lang.rawValue{
-//                    resultArray[index1] += 1
-//                }
-//            } else if tempQuery[4].contains("-") {
-//                if tempQuery[3] == newInfo[index2].soulFood.rawValue && tempQuery[2] == newInfo[index2].level.rawValue && tempQuery[1] == newInfo[index2].end.rawValue && tempQuery[0] == newInfo[index2].lang.rawValue{
-//                    resultArray[index1] += 1
-//                }
-//            } else {
-//                if Int(tempQuery[4])! <= newInfo[index2].score && tempQuery[3] == newInfo[index2].soulFood.rawValue && tempQuery[2] == newInfo[index2].level.rawValue && tempQuery[1] == newInfo[index2].end.rawValue && tempQuery[0] == newInfo[index2].lang.rawValue{
-//                    resultArray[index1] += 1
-//                }
-//            }
+
         }
     }
         
