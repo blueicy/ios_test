@@ -2073,9 +2073,27 @@ extension String{
 //
 //solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"], [2,3,4])
 
-func _2743(){
-    let letter = String(readLine()!)
-    print(letter.count)
+//func _2743(){
+//    let letter = String(readLine()!)
+//    print(letter.count)
+//}
+//
+//_2743()
+
+precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }
+infix operator ^^ : PowerPrecedence
+func ^^ (radix: Int, power: Int) -> Int {
+    return Int(pow(Double(radix), Double(power)))
 }
 
-_2743()
+
+func _10824() {
+    let numbers = readLine()!.split(separator: " ").map{ String($0) }
+    
+    let firstNumber = Int(numbers[0])! * Int(pow(Double(10),Double(numbers[1].count))) + Int(numbers[1])!
+    let secondNumber = Int(numbers[2])! * Int(pow(Double(10),Double(numbers[3].count))) + Int(numbers[3])!
+    print(firstNumber+secondNumber)
+    
+}
+
+_10824()
