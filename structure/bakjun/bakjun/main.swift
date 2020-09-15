@@ -2080,20 +2080,37 @@ extension String{
 //
 //_2743()
 
-precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }
-infix operator ^^ : PowerPrecedence
-func ^^ (radix: Int, power: Int) -> Int {
-    return Int(pow(Double(radix), Double(power)))
+//precedencegroup PowerPrecedence { higherThan: MultiplicationPrecedence }
+//infix operator ^^ : PowerPrecedence
+//func ^^ (radix: Int, power: Int) -> Int {
+//    return Int(pow(Double(radix), Double(power)))
+//}
+//
+//
+//func _10824() {
+//    let numbers = readLine()!.split(separator: " ").map{ String($0) }
+//
+//    let firstNumber = Int(numbers[0])! * Int(pow(Double(10),Double(numbers[1].count))) + Int(numbers[1])!
+//    let secondNumber = Int(numbers[2])! * Int(pow(Double(10),Double(numbers[3].count))) + Int(numbers[3])!
+//    print(firstNumber+secondNumber)
+//
+//}
+//
+//_10824()
+
+func _11656() {
+    let letters = String(readLine()!)
+    
+    var dp = [String]()
+    
+    for index in 1..<letters.count {
+        dp.append(letters.substring(from: letters.index(letters.startIndex, offsetBy: index)))
+    }
+    
+    dp.sort()
+    for index in 0..<dp.count {
+        print(dp[index])
+    }
 }
 
-
-func _10824() {
-    let numbers = readLine()!.split(separator: " ").map{ String($0) }
-    
-    let firstNumber = Int(numbers[0])! * Int(pow(Double(10),Double(numbers[1].count))) + Int(numbers[1])!
-    let secondNumber = Int(numbers[2])! * Int(pow(Double(10),Double(numbers[3].count))) + Int(numbers[3])!
-    print(firstNumber+secondNumber)
-    
-}
-
-_10824()
+_11656()
