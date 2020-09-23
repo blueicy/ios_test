@@ -2098,19 +2098,36 @@ extension String{
 //
 //_10824()
 
-func _11656() {
-    let letters = String(readLine()!)
+//func _11656() {
+//    let letters = String(readLine()!)
+//
+//    var dp = [String]()
+//
+//    for index in 1..<letters.count {
+//        dp.append(letters.substring(from: letters.index(letters.startIndex, offsetBy: index)))
+//    }
+//
+//    dp.sort()
+//    for index in 0..<dp.count {
+//        print(dp[index])
+//    }
+//}
+//
+//_11656()
+
+
+func _10430() {
+    let numbers = readLine()!.split(separator: " ").map{ Int($0)! }
     
-    var dp = [String]()
+    let a = numbers[0]
+    let b = numbers[1]
+    let c = numbers[2]
     
-    for index in 1..<letters.count {
-        dp.append(letters.substring(from: letters.index(letters.startIndex, offsetBy: index)))
-    }
+    print( (a+b)%c )
+    print( ((a%c) + (b%c))%c )
+    print( (a*b)%c )
+    print( ((a%c) * (b%c))%c )
     
-    dp.sort()
-    for index in 0..<dp.count {
-        print(dp[index])
-    }
 }
 
-_11656()
+_10430()
