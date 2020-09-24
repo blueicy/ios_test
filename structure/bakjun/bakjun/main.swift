@@ -2116,18 +2116,49 @@ extension String{
 //_11656()
 
 
-func _10430() {
+//func _10430() {
+//    let numbers = readLine()!.split(separator: " ").map{ Int($0)! }
+//
+//    let a = numbers[0]
+//    let b = numbers[1]
+//    let c = numbers[2]
+//
+//    print( (a+b)%c )
+//    print( ((a%c) + (b%c))%c )
+//    print( (a*b)%c )
+//    print( ((a%c) * (b%c))%c )
+//
+//}
+//
+//_10430()
+
+func _2609() {
     let numbers = readLine()!.split(separator: " ").map{ Int($0)! }
-    
     let a = numbers[0]
     let b = numbers[1]
-    let c = numbers[2]
     
-    print( (a+b)%c )
-    print( ((a%c) + (b%c))%c )
-    print( (a*b)%c )
-    print( ((a%c) * (b%c))%c )
+    func gcd_r(_ a:Int, _ b:Int) -> Int {
+        return b != 0 ? gcd_r(b, a%b) : a
+    }
     
+    func gcd(_ a:Int, _ b:Int) -> Int {
+        var aa = a
+        var bb = b
+        while b>0 {
+            let tmp = aa % bb
+            aa = bb
+            bb = tmp
+        }
+        return aa
+    }
+    
+    let gcd = gcd_r(a, b)
+
+    func lcm(_ a:Int, _ b:Int) -> Int {
+        return a*b/gcd
+    }
+    print( gcd )
+    print(lcm(a, b))
 }
 
-_10430()
+_2609()
