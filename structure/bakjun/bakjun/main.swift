@@ -2132,33 +2132,73 @@ extension String{
 //
 //_10430()
 
-func _2609() {
-    let numbers = readLine()!.split(separator: " ").map{ Int($0)! }
-    let a = numbers[0]
-    let b = numbers[1]
-    
-    func gcd_r(_ a:Int, _ b:Int) -> Int {
-        return b != 0 ? gcd_r(b, a%b) : a
-    }
-    
-    func gcd(_ a:Int, _ b:Int) -> Int {
-        var aa = a
-        var bb = b
-        while b>0 {
-            let tmp = aa % bb
-            aa = bb
-            bb = tmp
-        }
-        return aa
-    }
-    
-    let gcd = gcd_r(a, b)
+//최소공배수
+//func _2609() {
+//    let numbers = readLine()!.split(separator: " ").map{ Int($0)! }
+//    let a = numbers[0]
+//    let b = numbers[1]
+//
+//    func gcd_r(_ a:Int, _ b:Int) -> Int {
+//        return b != 0 ? gcd_r(b, a%b) : a
+//    }
+//
+//    func gcd(_ a:Int, _ b:Int) -> Int {
+//        var aa = a
+//        var bb = b
+//        while b>0 {
+//            let tmp = aa % bb
+//            aa = bb
+//            bb = tmp
+//        }
+//        return aa
+//    }
+//
+//    let gcd = gcd_r(a, b)
+//
+//    func lcm(_ a:Int, _ b:Int) -> Int {
+//        return a*b/gcd
+//    }
+//    print( gcd )
+//    print(lcm(a, b))
+//}
+//
+//_2609()
 
-    func lcm(_ a:Int, _ b:Int) -> Int {
-        return a*b/gcd
+func _1934() {
+    let number = Int(readLine()!)!
+    var array = [[Int]](repeating: Array(repeating: 0, count: 2), count: number)
+    
+        func gcd_r(_ a:Int, _ b:Int) -> Int {
+            return b != 0 ? gcd_r(b, a%b) : a
+        }
+    
+        func gcd(_ a:Int, _ b:Int) -> Int {
+            var aa = a
+            var bb = b
+            while b>0 {
+                let tmp = aa % bb
+                aa = bb
+                bb = tmp
+            }
+            return aa
+        }
+    
+
+    
+    for index in 0..<number {
+        let number = readLine()!.split(separator: " ").map{ Int($0)! }
+        array[index][0] = number[0]
+        array[index][1] = number[1]
+        
     }
-    print( gcd )
-    print(lcm(a, b))
+    
+    for index in 0..<number {
+        let a = array[index][0]
+        let b = array[index][1]
+        
+        let gcd = gcd_r(a, b)
+        print ( a*b/gcd )
+    }
 }
 
-_2609()
+_1934()
