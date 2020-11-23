@@ -236,22 +236,22 @@ public class ListNode {
 //class Solution {
 //    func threeSum(_ nums: [Int]) -> [[Int]] {
 //        var result = [[Int]]()
-//        
+//
 //        let nums = nums.sorted()
 //        var index = 0
-//        
+//
 //        while index < (nums.count - 2) {
-//            
+//
 //            var start = index + 1
 //            var end = nums.count - 1
-//            
+//
 //            while start < end {
 //                let sum = nums[index] + nums[start] + nums[end]
-//                
+//
 //                if sum == 0 {
 //                    result.append([nums[index], nums[start], nums[end]])
 //                }
-//                
+//
 //                if sum < 0 {
 //                    let currentStart = start
 //                    while start < end && nums[start] == nums[currentStart] {
@@ -264,14 +264,56 @@ public class ListNode {
 //                    }
 //                }
 //            }
-//            
+//
 //            let currentIndex = index
 //            while index < (nums.count - 2) && nums[index] == nums[currentIndex] {
 //                index += 1
 //            }
+//
+//        }
+//
+//        return result
+//    }
+//}
+
+//class Solution {
+//    func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
+//        guard nums.count >= 3 else { return 0 }
+//        var result:Int = 0
+//        var nums = nums.sorted()
+//        
+//        
+//        var start = 1
+//        var end = nums.count - 1
+//        
+//        var closest = nums[0] + nums[start] + nums[end]
+//        
+//      for index in 0..<nums.count - 2 {
+//            start = index + 1
+//            end = nums.count - 1
+//            while start < end {
+//                let sum = nums[index] + nums[start] + nums[end]
+//                
+//                if sum == target {
+//                    return sum
+//                } else if sum < target {
+//                    start += 1
+//                } else if sum > target {
+//                    end -= 1
+//                }
+//                
+//                if abs(target-sum) < abs(target-closest) {
+//                    closest = sum
+//                }
+//                
+//            }
 //            
 //        }
 //        
-//        return result
+//        
+//        
+//        return closest
+//        
+//        
 //    }
 //}
