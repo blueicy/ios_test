@@ -408,21 +408,49 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+//        if l1 == nil { return l2 }
+//        if l2 == nil { return l1 }
+//        var result:ListNode? = nil
+//
+//        if(l1!.val <= l2!.val) {
+//            result = l1
+//            result!.next = mergeTwoLists(l1!.next, l2)
+//        } else {
+//            result = l2
+//            result!.next = mergeTwoLists(l1, l2!.next)
+//        }
+//
+//        return result
+//
+//    }
+//}
+
+
 class Solution {
-    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
-        if l1 == nil { return l2 }
-        if l2 == nil { return l1 }
-        var result:ListNode? = nil
-
-        if(l1!.val <= l2!.val) {
-            result = l1
-            result!.next = mergeTwoLists(l1!.next, l2)
+    func generateParenthesis(_ n: Int) -> [String] {
+        var results = [String]()
+        
+        generateParenthesis(&results, n, "", 0, 0, 0)
+        
+        return results
+    }
+    
+    private func generateParenthesis(_ results: inout [String],_ n:Int,_ str:String,_ strLen:Int,_ opened:Int,_ closed:Int) {
+        
+        if strLen == n * 2 {
+            results.append(str)
         } else {
-            result = l2
-            result!.next = mergeTwoLists(l1, l2!.next)
+            if opened < n {
+                generateParenthesis(&results, n, "\(str)(",strLen+1 , opened+1, closed)
+            }
+            if closed < opened {
+                generateParenthesis(&results, n, "\(str))",strLen+1, opened, closed+1)
+            }
+            
         }
-
-        return result
-
+        
+        
     }
 }
