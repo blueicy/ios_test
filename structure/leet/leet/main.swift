@@ -428,28 +428,79 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    func generateParenthesis(_ n: Int) -> [String] {
+//        var results = [String]()
+//
+//        generateParenthesis(&results, n, "", 0, 0, 0)
+//
+//        return results
+//    }
+//
+//    private func generateParenthesis(_ results: inout [String],_ n:Int,_ str:String,_ strLen:Int,_ opened:Int,_ closed:Int) {
+//
+//        if strLen == n * 2 {
+//            results.append(str)
+//        } else {
+//            if opened < n {
+//                generateParenthesis(&results, n, "\(str)(",strLen+1 , opened+1, closed)
+//            }
+//            if closed < opened {
+//                generateParenthesis(&results, n, "\(str))",strLen+1, opened, closed+1)
+//            }
+//
+//        }
+//
+//
+//    }
+//}
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init() { self.val = 0; self.next = nil; }
+ *     public init(_ val: Int) { self.val = val; self.next = nil; }
+ *     public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+ * }
+ */
 class Solution {
-    func generateParenthesis(_ n: Int) -> [String] {
-        var results = [String]()
+    func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
+        if lists.count == 0  { return nil }
+        if lists.count == 1  { return lists[0]}
         
-        generateParenthesis(&results, n, "", 0, 0, 0)
+        var input = lists
         
-        return results
+        return partition(lists,0,input.count - 1)
     }
     
-    private func generateParenthesis(_ results: inout [String],_ n:Int,_ str:String,_ strLen:Int,_ opened:Int,_ closed:Int) {
+    func partition(_ list:[ListNode?], _ start:Int, _ end:Int) ->ListNode? {
+        guard start != end else { return list[start] }
         
-        if strLen == n * 2 {
-            results.append(str)
-        } else {
-            if opened < n {
-                generateParenthesis(&results, n, "\(str)(",strLen+1 , opened+1, closed)
-            }
-            if closed < opened {
-                generateParenthesis(&results, n, "\(str))",strLen+1, opened, closed+1)
-            }
-            
+        if(start < end) {
+            let middle = (start + end)/2
+            let l1 = partition(list,start,middle)
+            let l2 = partition(list,middle+1,end)
+            return mergeTwoList(l1,l2)
         }
+        return nil
+    }
+    
+    func mergeTwoList(_ l1:ListNode?, _ l2:ListNode?) -> ListNode? {
+        if(l1 == nil) {return l2}
+        if(l2 == nil) {return l1}
+        var result:ListNode?
+        
+        if(l1!.val <= l2!.val) {
+            result = l1
+            result!.next = mergeTwoList(l1!.next,l2)
+        } else {
+            result = l2
+            result!.next = mergeTwoList(l1,l2!.next)
+        }
+        return result
         
         
     }
