@@ -281,19 +281,19 @@ public class ListNode {
 //        guard nums.count >= 3 else { return 0 }
 //        var result:Int = 0
 //        var nums = nums.sorted()
-//        
-//        
+//
+//
 //        var start = 1
 //        var end = nums.count - 1
-//        
+//
 //        var closest = nums[0] + nums[start] + nums[end]
-//        
+//
 //      for index in 0..<nums.count - 2 {
 //            start = index + 1
 //            end = nums.count - 1
 //            while start < end {
 //                let sum = nums[index] + nums[start] + nums[end]
-//                
+//
 //                if sum == target {
 //                    return sum
 //                } else if sum < target {
@@ -301,19 +301,57 @@ public class ListNode {
 //                } else if sum > target {
 //                    end -= 1
 //                }
-//                
+//
 //                if abs(target-sum) < abs(target-closest) {
 //                    closest = sum
 //                }
-//                
+//
 //            }
-//            
+//
 //        }
-//        
-//        
-//        
+//
+//
+//
 //        return closest
-//        
-//        
+//
+//
+//    }
+//}
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init() { self.val = 0; self.next = nil; }
+ *     public init(_ val: Int) { self.val = val; self.next = nil; }
+ *     public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+ * }
+ */
+//class Solution {
+//    func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
+//        guard let head = head else {
+//            return nil
+//        }
+//
+//        var newHead = ListNode(0)
+//        var slow:ListNode? = newHead
+//        var fast:ListNode? = newHead
+//
+//        newHead.next = head
+//
+//        for i in 0...n {
+//            fast = fast?.next
+//        }
+//
+//        while fast != nil {
+//            slow = slow?.next
+//            fast = fast?.next
+//        }
+//
+//        slow?.next = slow?.next?.next
+//
+//        return newHead.next
+//
 //    }
 //}
