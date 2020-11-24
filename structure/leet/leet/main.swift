@@ -356,53 +356,73 @@ public class ListNode {
 //    }
 //}
 
-class Solution {
-    func isValid(_ s: String) -> Bool {
-        var stack:[Character] = Array()
-        if s.count % 2 == 1 {
-            return false
-        }
-        
-        var answer:Bool = true
-        
-        for char in Array(s) {
-            switch char{
-                case "(":
-                    stack.append(char)
-                case "[":
-                    stack.append(char)
-                case "{":
-                    stack.append(char)
-                case ")":
-                    if let last = stack.last, last == "("{
-                        stack.removeLast()
-                    }else{
-                        answer = false
-                    }
-                case "]":
-                    if let last = stack.last, last == "["{
-                        stack.removeLast()
-                    }else{
-                        answer = false
-                    }
-                case "}":
-                    if let last = stack.last, last == "{"{
-                        stack.removeLast()
-                    }else{
-                        answer = false
-                    }
-                default:
-                    answer = false
-            }
+//class Solution {
+//    func isValid(_ s: String) -> Bool {
+//        var stack:[Character] = Array()
+//        if s.count % 2 == 1 {
+//            return false
+//        }
+//
+//        var answer:Bool = true
+//
+//        for char in Array(s) {
+//            switch char{
+//                case "(":
+//                    stack.append(char)
+//                case "[":
+//                    stack.append(char)
+//                case "{":
+//                    stack.append(char)
+//                case ")":
+//                    if let last = stack.last, last == "("{
+//                        stack.removeLast()
+//                    }else{
+//                        answer = false
+//                    }
+//                case "]":
+//                    if let last = stack.last, last == "["{
+//                        stack.removeLast()
+//                    }else{
+//                        answer = false
+//                    }
+//                case "}":
+//                    if let last = stack.last, last == "{"{
+//                        stack.removeLast()
+//                    }else{
+//                        answer = false
+//                    }
+//                default:
+//                    answer = false
+//            }
+//
+//        }
+//
+//        if stack.count != 0 {
+//            return false
+//        }
+//
+//        return answer
+//
+//
+//    }
+//}
 
+
+class Solution {
+    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        if l1 == nil { return l2 }
+        if l2 == nil { return l1 }
+        var result:ListNode? = nil
+
+        if(l1!.val <= l2!.val) {
+            result = l1
+            result!.next = mergeTwoLists(l1!.next, l2)
+        } else {
+            result = l2
+            result!.next = mergeTwoLists(l1, l2!.next)
         }
-        
-        if stack.count != 0 {
-            return false
-        }
-        
-        return answer
-        
-        
+
+        return result
+
     }
 }
