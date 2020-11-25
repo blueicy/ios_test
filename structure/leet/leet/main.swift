@@ -466,42 +466,77 @@ public class ListNode {
  *     public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
  * }
  */
+//class Solution {
+//    func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
+//        if lists.count == 0  { return nil }
+//        if lists.count == 1  { return lists[0]}
+//
+//        var input = lists
+//
+//        return partition(lists,0,input.count - 1)
+//    }
+//
+//    func partition(_ list:[ListNode?], _ start:Int, _ end:Int) ->ListNode? {
+//        guard start != end else { return list[start] }
+//
+//        if(start < end) {
+//            let middle = (start + end)/2
+//            let l1 = partition(list,start,middle)
+//            let l2 = partition(list,middle+1,end)
+//            return mergeTwoList(l1,l2)
+//        }
+//        return nil
+//    }
+//
+//    func mergeTwoList(_ l1:ListNode?, _ l2:ListNode?) -> ListNode? {
+//        if(l1 == nil) {return l2}
+//        if(l2 == nil) {return l1}
+//        var result:ListNode?
+//
+//        if(l1!.val <= l2!.val) {
+//            result = l1
+//            result!.next = mergeTwoList(l1!.next,l2)
+//        } else {
+//            result = l2
+//            result!.next = mergeTwoList(l1,l2!.next)
+//        }
+//        return result
+//
+//
+//    }
+//}
+
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init() { self.val = 0; self.next = nil; }
+ *     public init(_ val: Int) { self.val = val; self.next = nil; }
+ *     public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+ * }
+ */
 class Solution {
-    func mergeKLists(_ lists: [ListNode?]) -> ListNode? {
-        if lists.count == 0  { return nil }
-        if lists.count == 1  { return lists[0]}
+    func swapPairs(_ head: ListNode?) -> ListNode? {
+        let dummy = ListNode(0)
+        var head = head
         
-        var input = lists
-        
-        return partition(lists,0,input.count - 1)
+        dummy.next = head
+        head = dummy
+        while head?.next?.next != nil {
+            let n1 = head?.next
+            let n2 = head?.next?.next
+            head?.next = n2
+            n1?.next = n2?.next
+            n2?.next = n1
+            head = n1
+        }
+        return dummy.next
     }
     
-    func partition(_ list:[ListNode?], _ start:Int, _ end:Int) ->ListNode? {
-        guard start != end else { return list[start] }
-        
-        if(start < end) {
-            let middle = (start + end)/2
-            let l1 = partition(list,start,middle)
-            let l2 = partition(list,middle+1,end)
-            return mergeTwoList(l1,l2)
-        }
-        return nil
-    }
     
-    func mergeTwoList(_ l1:ListNode?, _ l2:ListNode?) -> ListNode? {
-        if(l1 == nil) {return l2}
-        if(l2 == nil) {return l1}
-        var result:ListNode?
-        
-        if(l1!.val <= l2!.val) {
-            result = l1
-            result!.next = mergeTwoList(l1!.next,l2)
-        } else {
-            result = l2
-            result!.next = mergeTwoList(l1,l2!.next)
-        }
-        return result
-        
-        
-    }
+    
+    
+    
 }
