@@ -535,7 +535,18 @@ class Solution {
         return dummy.next
     }
     
-    
+    func swapPairs_Rec(_ head: ListNode?) -> ListNode? {
+        if  head?.next == nil {
+            return head
+        }
+        
+        let next = head?.next
+        
+        head?.next = swapPairs_Rec(head?.next?.next)
+        next?.next = head
+        
+        return next
+    }
     
     
     
