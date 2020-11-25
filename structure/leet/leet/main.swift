@@ -517,37 +517,61 @@ public class ListNode {
  *     public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
  * }
  */
+//class Solution {
+//    func swapPairs(_ head: ListNode?) -> ListNode? {
+//        let dummy = ListNode(0)
+//        var head = head
+//        
+//        dummy.next = head
+//        head = dummy
+//        while head?.next?.next != nil {
+//            let n1 = head?.next
+//            let n2 = head?.next?.next
+//            head?.next = n2
+//            n1?.next = n2?.next
+//            n2?.next = n1
+//            head = n1
+//        }
+//        return dummy.next
+//    }
+//    
+//    func swapPairs_Rec(_ head: ListNode?) -> ListNode? {
+//        if  head?.next == nil {
+//            return head
+//        }
+//        
+//        let next = head?.next
+//        
+//        head?.next = swapPairs_Rec(head?.next?.next)
+//        next?.next = head
+//        
+//        return next
+//    }
+//}
+
 class Solution {
-    func swapPairs(_ head: ListNode?) -> ListNode? {
-        let dummy = ListNode(0)
-        var head = head
+    func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
+        if k <= 1 { return head }
         
-        dummy.next = head
-        head = dummy
-        while head?.next?.next != nil {
-            let n1 = head?.next
-            let n2 = head?.next?.next
-            head?.next = n2
-            n1?.next = n2?.next
-            n2?.next = n1
-            head = n1
-        }
-        return dummy.next
-    }
-    
-    func swapPairs_Rec(_ head: ListNode?) -> ListNode? {
-        if  head?.next == nil {
-            return head
+        var tail: ListNode? = head
+        for _ in 1...(k-1) {
+            tail = tail?.next
+            if tail == nil { return head }
         }
         
-        let next = head?.next
+        let nextHead = reverseKGroup(tail?.next, k)
+          
+        var current = head
+        var prev:ListNode?
+        for _ in 1...k {
+            let tmp = current?.next
+            current?.next = prev
+            prev = current
+            current = tmp
+        }
         
-        head?.next = swapPairs_Rec(head?.next?.next)
-        next?.next = head
-        
-        return next
+        head?.next = nextHead
+        return tail
+    
     }
-    
-    
-    
 }
