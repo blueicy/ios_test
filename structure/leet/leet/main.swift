@@ -552,15 +552,15 @@ public class ListNode {
 //class Solution {
 //    func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
 //        if k <= 1 { return head }
-//        
+//
 //        var tail: ListNode? = head
 //        for _ in 1...(k-1) {
 //            tail = tail?.next
 //            if tail == nil { return head }
 //        }
-//        
+//
 //        let nextHead = reverseKGroup(tail?.next, k)
-//          
+//
 //        var current = head
 //        var prev:ListNode?
 //        for _ in 1...k {
@@ -569,29 +569,64 @@ public class ListNode {
 //            prev = current
 //            current = tmp
 //        }
-//        
+//
 //        head?.next = nextHead
 //        return tail
-//    
+//
+//    }
+//}
+
+
+//class Solution {
+//    func removeDuplicates(_ nums: inout [Int]) -> Int {
+//
+//        var index = 0
+//        var endOfIndex = nums.count
+//
+//        while index < endOfIndex - 1 {
+//            if nums[index] == nums[index+1] {
+//                nums.remove(at:index)
+//                endOfIndex -= 1
+//                continue
+//            }
+//            index += 1
+//        }
+//
+//        return nums.count
 //    }
 //}
 
 
 class Solution {
-    func removeDuplicates(_ nums: inout [Int]) -> Int {
-        
-        var index = 0
-        var endOfIndex = nums.count
-        
-        while index < endOfIndex - 1 {
-            if nums[index] == nums[index+1] {
-                nums.remove(at:index)
-                endOfIndex -= 1
-                continue
-            }
-            index += 1
+    func strStr(_ haystack: String, _ needle: String) -> Int {
+        if haystack.isEmpty {
+            if needle.isEmpty { return 0 }
+            return -1
         }
         
-        return nums.count
+        if needle.isEmpty { return 0 }
+        
+        let needleCount = needle.count
+        var start = 0
+        var end = needleCount - 1
+        
+        while end < haystack.count {
+            let startIndex = haystack.index(haystack.startIndex, offsetBy:start)
+            let endIndex = haystack.index(haystack.startIndex, offsetBy:end)
+            let substring = haystack[startIndex...endIndex]
+            
+            if substring == needle {
+                return start
+            }
+            
+            start += 1
+            end += 1
+            
+        }
+        
+        return -1
+        
+        
+        
     }
 }
