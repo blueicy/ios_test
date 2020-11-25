@@ -521,7 +521,7 @@ public class ListNode {
 //    func swapPairs(_ head: ListNode?) -> ListNode? {
 //        let dummy = ListNode(0)
 //        var head = head
-//        
+//
 //        dummy.next = head
 //        head = dummy
 //        while head?.next?.next != nil {
@@ -534,44 +534,64 @@ public class ListNode {
 //        }
 //        return dummy.next
 //    }
-//    
+//
 //    func swapPairs_Rec(_ head: ListNode?) -> ListNode? {
 //        if  head?.next == nil {
 //            return head
 //        }
-//        
+//
 //        let next = head?.next
-//        
+//
 //        head?.next = swapPairs_Rec(head?.next?.next)
 //        next?.next = head
-//        
+//
 //        return next
 //    }
 //}
 
+//class Solution {
+//    func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
+//        if k <= 1 { return head }
+//        
+//        var tail: ListNode? = head
+//        for _ in 1...(k-1) {
+//            tail = tail?.next
+//            if tail == nil { return head }
+//        }
+//        
+//        let nextHead = reverseKGroup(tail?.next, k)
+//          
+//        var current = head
+//        var prev:ListNode?
+//        for _ in 1...k {
+//            let tmp = current?.next
+//            current?.next = prev
+//            prev = current
+//            current = tmp
+//        }
+//        
+//        head?.next = nextHead
+//        return tail
+//    
+//    }
+//}
+
+
 class Solution {
-    func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
-        if k <= 1 { return head }
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
         
-        var tail: ListNode? = head
-        for _ in 1...(k-1) {
-            tail = tail?.next
-            if tail == nil { return head }
+        var index = 0
+        var endOfIndex = nums.count
+        
+        while index < endOfIndex - 1 {
+            if nums[index] == nums[index+1] {
+                nums.remove(at:index)
+                endOfIndex -= 1
+                continue
+            }
+            index += 1
         }
         
-        let nextHead = reverseKGroup(tail?.next, k)
-          
-        var current = head
-        var prev:ListNode?
-        for _ in 1...k {
-            let tmp = current?.next
-            current?.next = prev
-            prev = current
-            current = tmp
-        }
-        
-        head?.next = nextHead
-        return tail
-    
+        return nums.count
     }
 }
