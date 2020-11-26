@@ -632,58 +632,109 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    class TrieNode {
+//        var word: String?
+//        var children = [Character: TrieNode]()
+//    }
+//
+//    func findSubstring(_ s: String, _ words: [String]) -> [Int] {
+//        guard words.count > 0 && words[0].count > 0 else { return [] }
+//        let count = words.count, len = words[0].count
+//
+//        // build trie
+//        let trieRoot = TrieNode()
+//        for word in words {
+//            var node = trieRoot
+//            for char in word {
+//                if node.children[char] == nil {
+//                    node.children[char] = TrieNode()
+//                }
+//                node = node.children[char]!
+//            }
+//            node.word = word
+//        }
+//
+//        // build counter
+//        var counter = [String: Int]()
+//        for word in words {
+//            counter[word, default: 0] += 1
+//        }
+//
+//        // search
+//        var result = [Int]()
+//        let s = Array(s)
+//        iLoop: for i in 0..<s.count where i + len * count <= s.count {
+//            var j = i
+//            var counter = counter
+//            while j < i + len * count {
+//                var node = trieRoot, k = j
+//                while k < j + len {
+//                    guard let next = node.children[s[k]] else { continue iLoop }
+//                    node = next
+//                    k += 1
+//                }
+//
+//                let word = node.word!
+//                guard counter[word, default: 0] > 0 else { continue iLoop }
+//                counter[word, default: 0] -= 1
+//
+//                j = k
+//            }
+//            result.append(i)
+//        }
+//
+//        return result
+//    }
+//}
+
+
 class Solution {
-    class TrieNode {
-        var word: String?
-        var children = [Character: TrieNode]()
+    func nextPermutation(_ nums: inout [Int]) {
+        let k = findLargestK(&nums)
+        if k >= 0 {
+            let l = findLargestL(&nums, k)
+            swap(&nums,k , l)
+        }
+        reverse(&nums, k+1)
+
+    }
+    
+    private func findLargestK(_ nums: inout [Int]) -> Int {
+        var k = nums.count - 2
+        
+        while k >= 0 && nums[k] >= nums[k+1] {
+            k -= 1
+        }
+        
+        return k
+    }
+    
+    private func findLargestL(_ nums: inout [Int], _ k:Int) -> Int {
+        var l = nums.count - 1
+        
+        while l >= 0 && nums[k] >= nums[l] {
+            l -= 1
+        }
+        
+        return l
+    }
+    
+    private func swap(_ nums: inout [Int], _ a: Int, _ b:Int) {
+        let temp = nums[a]
+        nums[a] = nums[b]
+        nums[b] = temp
+    }
+    
+    private func reverse(_ nums: inout [Int],_ start: Int) {
+        var lower = start
+        var upper = nums.count - 1
+        
+        while lower < upper {
+            swap(&nums, lower, upper)
+            lower += 1
+            upper -= 1
+        }
     }
 
-    func findSubstring(_ s: String, _ words: [String]) -> [Int] {
-        guard words.count > 0 && words[0].count > 0 else { return [] }
-        let count = words.count, len = words[0].count
-        
-        // build trie
-        let trieRoot = TrieNode()
-        for word in words {
-            var node = trieRoot
-            for char in word {
-                if node.children[char] == nil {
-                    node.children[char] = TrieNode()
-                }
-                node = node.children[char]!
-            }
-            node.word = word
-        }
-        
-        // build counter
-        var counter = [String: Int]()
-        for word in words {
-            counter[word, default: 0] += 1
-        }
-        
-        // search
-        var result = [Int]()
-        let s = Array(s)
-        iLoop: for i in 0..<s.count where i + len * count <= s.count {
-            var j = i
-            var counter = counter
-            while j < i + len * count {
-                var node = trieRoot, k = j
-                while k < j + len {
-                    guard let next = node.children[s[k]] else { continue iLoop }
-                    node = next
-                    k += 1
-                }
-                
-                let word = node.word!
-                guard counter[word, default: 0] > 0 else { continue iLoop }
-                counter[word, default: 0] -= 1
-                
-                j = k
-            }
-            result.append(i)
-        }
-        
-        return result
-    }
 }
