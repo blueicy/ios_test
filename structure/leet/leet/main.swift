@@ -699,37 +699,37 @@ public class ListNode {
 //        reverse(&nums, k+1)
 //
 //    }
-//    
+//
 //    private func findLargestK(_ nums: inout [Int]) -> Int {
 //        var k = nums.count - 2
-//        
+//
 //        while k >= 0 && nums[k] >= nums[k+1] {
 //            k -= 1
 //        }
-//        
+//
 //        return k
 //    }
-//    
+//
 //    private func findLargestL(_ nums: inout [Int], _ k:Int) -> Int {
 //        var l = nums.count - 1
-//        
+//
 //        while l >= 0 && nums[k] >= nums[l] {
 //            l -= 1
 //        }
-//        
+//
 //        return l
 //    }
-//    
+//
 //    private func swap(_ nums: inout [Int], _ a: Int, _ b:Int) {
 //        let temp = nums[a]
 //        nums[a] = nums[b]
 //        nums[b] = temp
 //    }
-//    
+//
 //    private func reverse(_ nums: inout [Int],_ start: Int) {
 //        var lower = start
 //        var upper = nums.count - 1
-//        
+//
 //        while lower < upper {
 //            swap(&nums, lower, upper)
 //            lower += 1
@@ -740,26 +740,71 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    func longestValidParentheses(_ s: String) -> Int {
+//        if s.count == 0 { return 0 }
+//        
+//        var stack = [Int]()
+//        stack.append(-1)
+//        var arr = Array(s)
+//        var res = 0
+//        for i in 0..<arr.count {
+//            if arr[i] == ")" {
+//                if stack.count > 1 && arr[stack.last!] == "(" {
+//                    stack.removeLast()
+//                    res = max(res, i - stack.last!)
+//                } else {
+//                    stack.append(i)
+//                }
+//            } else {
+//                stack.append(i)
+//            }
+//        }
+//        return res
+//    }
+//}
+
 class Solution {
-    func longestValidParentheses(_ s: String) -> Int {
-        if s.count == 0 { return 0 }
-        
-        var stack = [Int]()
-        stack.append(-1)
-        var arr = Array(s)
-        var res = 0
-        for i in 0..<arr.count {
-            if arr[i] == ")" {
-                if stack.count > 1 && arr[stack.last!] == "(" {
-                    stack.removeLast()
-                    res = max(res, i - stack.last!)
-                } else {
-                    stack.append(i)
-                }
+    func search(_ nums: [Int], _ target: Int) -> Int {
+        return binarySearch(nums, target, 0, nums.count-1)
+    }
+
+    func binarySearch(_ nums: [Int], _ target: Int, _ left: Int, _ right: Int) -> Int{
+
+        if left > right {
+            return -1
+        }
+
+        let middle = (left+right)/2
+        var leftVal = nums[left]
+        var rightVal = nums[right]
+        var middleVal = nums[middle]
+
+
+        if middleVal == target  {
+            return middle
+        } else if leftVal <= middleVal {
+            // if we get here, the left half of the array isnt rotated, we will test on that side
+            // ie 56789123
+            if leftVal <= target && target < middleVal {
+                // if we get here, the target is in the left half of the array
+                return binarySearch(nums, target, left, middle-1)
             } else {
-                stack.append(i)
+                // if we get here, the target is in the right half of the array
+                return binarySearch(nums, target, middle+1, right)
+            }
+
+        } else {
+            // if we get here, the left half of the array is rotated, we will test on that side
+            // ie 891234567
+            if middleVal < target && target <= rightVal {
+                // if we get here, the target is in the right half of the array
+                return binarySearch(nums, target, middle+1, right)
+            } else {
+                // if we get here, the target is in the left half of the array
+                return binarySearch(nums, target, left, middle-1)
             }
         }
-        return res
     }
+
 }
