@@ -743,7 +743,7 @@ public class ListNode {
 //class Solution {
 //    func longestValidParentheses(_ s: String) -> Int {
 //        if s.count == 0 { return 0 }
-//        
+//
 //        var stack = [Int]()
 //        stack.append(-1)
 //        var arr = Array(s)
@@ -807,4 +807,11 @@ class Solution {
         }
     }
 
+}
+
+
+class Solution {
+    func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
+        
+    }
 }
