@@ -810,38 +810,66 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
+//        let start = binarySearch(nums, target)
+//
+//        if start == nums.count || nums[start] != target {
+//            return [-1,-1]
+//        }
+//
+//        let end = binarySearch(nums, target + 1) - 1
+//
+//        return [start, end]
+//
+//    }
+//
+//
+//    private func binarySearch(_ nums:[Int],_ target:Int) -> Int {
+//        var left = 0
+//        var right = nums.count
+//        var middle = 0
+//
+//        while left < right {
+//            middle = (left + right) / 2
+//            if nums[middle] < target {
+//                left = middle + 1
+//            } else {
+//                right = middle
+//            }
+//
+//        }
+//
+//        return left
+//    }
+//
+//}
+
 class Solution {
-    func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
-        let start = binarySearch(nums, target)
+    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+        if target == 0 { return 0 }
         
-        if start == nums.count || nums[start] != target {
-            return [-1,-1]
-        }
+        var start = binarySearch(nums, target)
         
-        let end = binarySearch(nums, target + 1) - 1
-        
-        return [start, end]
-        
+        return start
     }
-    
     
     private func binarySearch(_ nums:[Int],_ target:Int) -> Int {
         var left = 0
-        var right = nums.count
         var middle = 0
+        var right = nums.count
         
         while left < right {
-            middle = (left + right) / 2
+            middle = ( left + right ) / 2
             if nums[middle] < target {
                 left = middle + 1
             } else {
                 right = middle
             }
-            
         }
         
         return left
     }
     
+    
 }
-
