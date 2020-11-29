@@ -845,30 +845,97 @@ public class ListNode {
 //
 //}
 
+//class Solution {
+//    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+//        if target == 0 { return 0 }
+//        
+//        var start = binarySearch(nums, target)
+//        
+//        return start
+//    }
+//    
+//    private func binarySearch(_ nums:[Int],_ target:Int) -> Int {
+//        var left = 0
+//        var middle = 0
+//        var right = nums.count
+//        
+//        while left < right {
+//            middle = ( left + right ) / 2
+//            if nums[middle] < target {
+//                left = middle + 1
+//            } else {
+//                right = middle
+//            }
+//        }
+//        
+//        return left
+//    }
+//    
+//    
+//}
+
 class Solution {
-    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
-        if target == 0 { return 0 }
+    func isValidSudoku(_ board: [[Character]]) -> Bool {
+        var rows = [Int:[Character]]()
+        var cols = [Int:[Character]]()
+        var subBoard = [Int:[Character]]()
         
-        var start = binarySearch(nums, target)
-        
-        return start
-    }
-    
-    private func binarySearch(_ nums:[Int],_ target:Int) -> Int {
-        var left = 0
-        var middle = 0
-        var right = nums.count
-        
-        while left < right {
-            middle = ( left + right ) / 2
-            if nums[middle] < target {
-                left = middle + 1
-            } else {
-                right = middle
+        for (i,row) in board.enumerated(){
+            for (j,_) in row.enumerated(){
+                let val = board[i][j]
+                if val == "." {
+                    continue
+                }
+                
+                //Rows
+                if let row = rows[i]{
+                    if row.contains(val){
+                        return false
+                    }else{
+                        var newRow = row
+                        newRow.append(val)
+                        rows[i] = newRow
+                    }
+                }else{
+                    var newRow = [Character]()
+                        newRow.append(val)
+                        rows[i] = newRow
+                }
+                
+                //Cols
+                if let col = cols[j]{
+                    if col.contains(val){
+                        return false
+                    }else{
+                        var newCol = col
+                        newCol.append(val)
+                        cols[j] = newCol
+                    }
+                }else{
+                    var newCol = [Character]()
+                    newCol.append(val)
+                    cols[j] = newCol
+                }
+                
+                //SubBoard
+                let index = (3*(i/3)) + (j/3)
+                if let sb = subBoard[index]{
+                    if sb.contains(val){
+                        return false
+                    }else{
+                        var newSubBoard = sb
+                        newSubBoard.append(val)
+                        subBoard[index] = newSubBoard
+                    }
+                }else{
+                    var newSubBoard = [Character]()
+                    newSubBoard.append(val)
+                    subBoard[index] = newSubBoard
+                }
+                
             }
         }
-        
-        return left
+        return true
     }
     
     
