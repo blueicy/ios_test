@@ -848,17 +848,17 @@ public class ListNode {
 //class Solution {
 //    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
 //        if target == 0 { return 0 }
-//        
+//
 //        var start = binarySearch(nums, target)
-//        
+//
 //        return start
 //    }
-//    
+//
 //    private func binarySearch(_ nums:[Int],_ target:Int) -> Int {
 //        var left = 0
 //        var middle = 0
 //        var right = nums.count
-//        
+//
 //        while left < right {
 //            middle = ( left + right ) / 2
 //            if nums[middle] < target {
@@ -867,76 +867,162 @@ public class ListNode {
 //                right = middle
 //            }
 //        }
-//        
+//
 //        return left
+//    }
+//
+//
+//}
+
+//class Solution {
+//    func isValidSudoku(_ board: [[Character]]) -> Bool {
+//        var rows = [Int:[Character]]()
+//        var cols = [Int:[Character]]()
+//        var subBoard = [Int:[Character]]()
+//        
+//        for (i,row) in board.enumerated(){
+//            for (j,_) in row.enumerated(){
+//                let val = board[i][j]
+//                if val == "." {
+//                    continue
+//                }
+//                
+//                //Rows
+//                if let row = rows[i]{
+//                    if row.contains(val){
+//                        return false
+//                    }else{
+//                        var newRow = row
+//                        newRow.append(val)
+//                        rows[i] = newRow
+//                    }
+//                }else{
+//                    var newRow = [Character]()
+//                        newRow.append(val)
+//                        rows[i] = newRow
+//                }
+//                
+//                //Cols
+//                if let col = cols[j]{
+//                    if col.contains(val){
+//                        return false
+//                    }else{
+//                        var newCol = col
+//                        newCol.append(val)
+//                        cols[j] = newCol
+//                    }
+//                }else{
+//                    var newCol = [Character]()
+//                    newCol.append(val)
+//                    cols[j] = newCol
+//                }
+//                
+//                //SubBoard
+//                let index = (3*(i/3)) + (j/3)
+//                if let sb = subBoard[index]{
+//                    if sb.contains(val){
+//                        return false
+//                    }else{
+//                        var newSubBoard = sb
+//                        newSubBoard.append(val)
+//                        subBoard[index] = newSubBoard
+//                    }
+//                }else{
+//                    var newSubBoard = [Character]()
+//                    newSubBoard.append(val)
+//                    subBoard[index] = newSubBoard
+//                }
+//                
+//            }
+//        }
+//        return true
 //    }
 //    
 //    
 //}
 
+
+
 class Solution {
-    func isValidSudoku(_ board: [[Character]]) -> Bool {
-        var rows = [Int:[Character]]()
-        var cols = [Int:[Character]]()
-        var subBoard = [Int:[Character]]()
+    struct Point {
+        let x:Int
+        let y:Int
+        var vals:Set<Character>
+    }
+    
+    func solveSudoku(_ board: inout [[Character]]) {
+        let n = board.count
+        var todo = [Point]()
         
-        for (i,row) in board.enumerated(){
-            for (j,_) in row.enumerated(){
-                let val = board[i][j]
-                if val == "." {
-                    continue
+        for i in 0..<n {
+            for j in 0..<n {
+                if board[i][j] == "." {
+                    let sols = solutions(i, j, board)
+                    todo.append(sols)
                 }
-                
-                //Rows
-                if let row = rows[i]{
-                    if row.contains(val){
-                        return false
-                    }else{
-                        var newRow = row
-                        newRow.append(val)
-                        rows[i] = newRow
-                    }
-                }else{
-                    var newRow = [Character]()
-                        newRow.append(val)
-                        rows[i] = newRow
-                }
-                
-                //Cols
-                if let col = cols[j]{
-                    if col.contains(val){
-                        return false
-                    }else{
-                        var newCol = col
-                        newCol.append(val)
-                        cols[j] = newCol
-                    }
-                }else{
-                    var newCol = [Character]()
-                    newCol.append(val)
-                    cols[j] = newCol
-                }
-                
-                //SubBoard
-                let index = (3*(i/3)) + (j/3)
-                if let sb = subBoard[index]{
-                    if sb.contains(val){
-                        return false
-                    }else{
-                        var newSubBoard = sb
-                        newSubBoard.append(val)
-                        subBoard[index] = newSubBoard
-                    }
-                }else{
-                    var newSubBoard = [Character]()
-                    newSubBoard.append(val)
-                    subBoard[index] = newSubBoard
-                }
-                
             }
         }
-        return true
+        
+        todo.sort { $0.vals.count < $1.vals.count }
+        
+        func checkValid(_ board:[[Character]],_ row:Int,_ col:Int, val: Character) -> Bool {
+            for i in 0..<n {
+                if ((i != col && board[row][i] == val) || (i != row && board[i][col] == val)) {
+                    return false
+                }
+            }
+            
+            let rm = row/3
+            let cm = col/3
+            
+            let rlb = rm*3
+            let rub = rm*3 + 3
+            
+            let clb = cm*3
+            let cub = cm*3 + 3
+            
+            for i in rlb..<rub {
+                for j in clb..<cub {
+                    if i== row && j == col { continue }
+                    let c = board[i][j]
+                    if c == val {
+                        return false
+                    }
+                }
+            }
+            
+            return true
+        }
+        
+        func dfs(_ b: [[Character]],_ todo: [Point]) {
+            guard todo.count > 0 else {
+                board = b
+                return
+            }
+            
+            var copyToDo = todo
+            var copyBoard = b
+            var point = copyToDo.removeFirst()
+            
+            guard board[point.x][point.y] == "." else { return }
+            
+            for v in point.vals {
+                if checkValid(copyBoard, point.x, point,y, val: v) {
+                    copyBoard[point.x][point.y] = v
+                    dfs(copyBoard, copyTodo)
+                }
+            }
+        }
+        
+        var copy = todo
+        for p in todo {
+            if p.vals.count == 1 {
+                copy
+            }
+        }
+        
     }
     
     
+
 }
