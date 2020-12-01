@@ -943,86 +943,119 @@ public class ListNode {
 
 
 
+//class Solution {
+//    struct Point {
+//        let x:Int
+//        let y:Int
+//        var vals:Set<Character>
+//    }
+//    
+//    func solveSudoku(_ board: inout [[Character]]) {
+//        let n = board.count
+//        var todo = [Point]()
+//        
+//        for i in 0..<n {
+//            for j in 0..<n {
+//                if board[i][j] == "." {
+//                    let sols = solutions(i, j, board)
+//                    todo.append(sols)
+//                }
+//            }
+//        }
+//        
+//        todo.sort { $0.vals.count < $1.vals.count }
+//        
+//        func checkValid(_ board:[[Character]],_ row:Int,_ col:Int, val: Character) -> Bool {
+//            for i in 0..<n {
+//                if ((i != col && board[row][i] == val) || (i != row && board[i][col] == val)) {
+//                    return false
+//                }
+//            }
+//            
+//            let rm = row/3
+//            let cm = col/3
+//            
+//            let rlb = rm*3
+//            let rub = rm*3 + 3
+//            
+//            let clb = cm*3
+//            let cub = cm*3 + 3
+//            
+//            for i in rlb..<rub {
+//                for j in clb..<cub {
+//                    if i== row && j == col { continue }
+//                    let c = board[i][j]
+//                    if c == val {
+//                        return false
+//                    }
+//                }
+//            }
+//            
+//            return true
+//        }
+//        
+//        func dfs(_ b: [[Character]],_ todo: [Point]) {
+//            guard todo.count > 0 else {
+//                board = b
+//                return
+//            }
+//            
+//            var copyToDo = todo
+//            var copyBoard = b
+//            var point = copyToDo.removeFirst()
+//            
+//            guard board[point.x][point.y] == "." else { return }
+//            
+//            for v in point.vals {
+//                if checkValid(copyBoard, point.x, point,y, val: v) {
+//                    copyBoard[point.x][point.y] = v
+//                    dfs(copyBoard, copyTodo)
+//                }
+//            }
+//        }
+//        
+//        var copy = todo
+//        for p in todo {
+//            if p.vals.count == 1 {
+//                copy
+//            }
+//        }
+//        
+//    }
+//    
+//    
+//
+//}
+
+
+
+
 class Solution {
-    struct Point {
-        let x:Int
-        let y:Int
-        var vals:Set<Character>
-    }
-    
-    func solveSudoku(_ board: inout [[Character]]) {
-        let n = board.count
-        var todo = [Point]()
+    func countAndSay(_ n: Int) -> String {
+        if n == 1 { return "1"}
         
-        for i in 0..<n {
-            for j in 0..<n {
-                if board[i][j] == "." {
-                    let sols = solutions(i, j, board)
-                    todo.append(sols)
-                }
-            }
-        }
-        
-        todo.sort { $0.vals.count < $1.vals.count }
-        
-        func checkValid(_ board:[[Character]],_ row:Int,_ col:Int, val: Character) -> Bool {
-            for i in 0..<n {
-                if ((i != col && board[row][i] == val) || (i != row && board[i][col] == val)) {
-                    return false
-                }
-            }
-            
-            let rm = row/3
-            let cm = col/3
-            
-            let rlb = rm*3
-            let rub = rm*3 + 3
-            
-            let clb = cm*3
-            let cub = cm*3 + 3
-            
-            for i in rlb..<rub {
-                for j in clb..<cub {
-                    if i== row && j == col { continue }
-                    let c = board[i][j]
-                    if c == val {
-                        return false
+        var result = "1"
+        for _ in 1..<n {
+            let nums = Array(result)
+            var temp = ""
+            var count = 1
+            for j in 0..<result.count {
+                if j == nums.count - 1 {
+                    temp.append("\(count)\(nums[j])")
+                } else {
+                    if nums[j] == nums[j+1] {
+                        count += 1
+                    } else {
+                        temp.append("\(count)\(nums[j])")
+                        count = 1
                     }
                 }
             }
             
-            return true
+            result = temp
         }
         
-        func dfs(_ b: [[Character]],_ todo: [Point]) {
-            guard todo.count > 0 else {
-                board = b
-                return
-            }
-            
-            var copyToDo = todo
-            var copyBoard = b
-            var point = copyToDo.removeFirst()
-            
-            guard board[point.x][point.y] == "." else { return }
-            
-            for v in point.vals {
-                if checkValid(copyBoard, point.x, point,y, val: v) {
-                    copyBoard[point.x][point.y] = v
-                    dfs(copyBoard, copyTodo)
-                }
-            }
-        }
-        
-        var copy = todo
-        for p in todo {
-            if p.vals.count == 1 {
-                copy
-            }
-        }
+        return result
         
     }
-    
-    
-
 }
