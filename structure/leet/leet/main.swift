@@ -949,11 +949,11 @@ public class ListNode {
 //        let y:Int
 //        var vals:Set<Character>
 //    }
-//    
+//
 //    func solveSudoku(_ board: inout [[Character]]) {
 //        let n = board.count
 //        var todo = [Point]()
-//        
+//
 //        for i in 0..<n {
 //            for j in 0..<n {
 //                if board[i][j] == "." {
@@ -962,25 +962,25 @@ public class ListNode {
 //                }
 //            }
 //        }
-//        
+//
 //        todo.sort { $0.vals.count < $1.vals.count }
-//        
+//
 //        func checkValid(_ board:[[Character]],_ row:Int,_ col:Int, val: Character) -> Bool {
 //            for i in 0..<n {
 //                if ((i != col && board[row][i] == val) || (i != row && board[i][col] == val)) {
 //                    return false
 //                }
 //            }
-//            
+//
 //            let rm = row/3
 //            let cm = col/3
-//            
+//
 //            let rlb = rm*3
 //            let rub = rm*3 + 3
-//            
+//
 //            let clb = cm*3
 //            let cub = cm*3 + 3
-//            
+//
 //            for i in rlb..<rub {
 //                for j in clb..<cub {
 //                    if i== row && j == col { continue }
@@ -990,22 +990,22 @@ public class ListNode {
 //                    }
 //                }
 //            }
-//            
+//
 //            return true
 //        }
-//        
+//
 //        func dfs(_ b: [[Character]],_ todo: [Point]) {
 //            guard todo.count > 0 else {
 //                board = b
 //                return
 //            }
-//            
+//
 //            var copyToDo = todo
 //            var copyBoard = b
 //            var point = copyToDo.removeFirst()
-//            
+//
 //            guard board[point.x][point.y] == "." else { return }
-//            
+//
 //            for v in point.vals {
 //                if checkValid(copyBoard, point.x, point,y, val: v) {
 //                    copyBoard[point.x][point.y] = v
@@ -1013,49 +1013,49 @@ public class ListNode {
 //                }
 //            }
 //        }
-//        
+//
 //        var copy = todo
 //        for p in todo {
 //            if p.vals.count == 1 {
 //                copy
 //            }
 //        }
-//        
+//
 //    }
-//    
-//    
+//
+//
 //
 //}
 
 
 
-
-class Solution {
-    func countAndSay(_ n: Int) -> String {
-        if n == 1 { return "1"}
-        
-        var result = "1"
-        for _ in 1..<n {
-            let nums = Array(result)
-            var temp = ""
-            var count = 1
-            for j in 0..<result.count {
-                if j == nums.count - 1 {
-                    temp.append("\(count)\(nums[j])")
-                } else {
-                    if nums[j] == nums[j+1] {
-                        count += 1
-                    } else {
-                        temp.append("\(count)\(nums[j])")
-                        count = 1
-                    }
-                }
-            }
-            
-            result = temp
-        }
-        
-        return result
-        
-    }
-}
+//
+//class Solution {
+//    func countAndSay(_ n: Int) -> String {
+//        if n == 1 { return "1"}
+//        
+//        var result = "1"
+//        for _ in 1..<n {
+//            let nums = Array(result)
+//            var temp = ""
+//            var count = 1
+//            for j in 0..<result.count {
+//                if j == nums.count - 1 {
+//                    temp.append("\(count)\(nums[j])")
+//                } else {
+//                    if nums[j] == nums[j+1] {
+//                        count += 1
+//                    } else {
+//                        temp.append("\(count)\(nums[j])")
+//                        count = 1
+//                    }
+//                }
+//            }
+//            
+//            result = temp
+//        }
+//        
+//        return result
+//        
+//    }
+//}
