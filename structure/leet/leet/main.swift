@@ -1033,7 +1033,7 @@ public class ListNode {
 //class Solution {
 //    func countAndSay(_ n: Int) -> String {
 //        if n == 1 { return "1"}
-//        
+//
 //        var result = "1"
 //        for _ in 1..<n {
 //            let nums = Array(result)
@@ -1051,11 +1051,11 @@ public class ListNode {
 //                    }
 //                }
 //            }
-//            
+//
 //            result = temp
 //        }
-//        
+//
 //        return result
-//        
+//
 //    }
 //}
