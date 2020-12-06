@@ -1060,29 +1060,69 @@ public class ListNode {
 //    }
 //}
 
+//class Solution {
+//    func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {
+//        var result = [[Int]]()
+//        var candidate = [Int]()
+//
+//        backtracking(&result, &candidate, candidates.sorted(), target, 0)
+//
+//        return result
+//    }
+//
+//    private func backtracking(_ result: inout [[Int]], _ candidate: inout [Int], _ candidates:[Int], _ remain:Int, _ start:Int) {
+//        if remain < 0 {
+//            return
+//        } else if remain == 0 {
+//            result.append(candidate)
+//        } else {
+//            for i in start..<candidates.count {
+//                candidate.append(candidates[i])
+//                backtracking(&result, &candidate, candidates, remain - candidates[i], i)
+//                candidate.removeLast()
+//            }
+//        }
+//    }
+//
+//
+//}
+
+
 class Solution {
-    func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {
+    func combinationSum2(_ candidates: [Int], _ target: Int) -> [[Int]] {
+        guard !candidates.isEmpty else { return [] }
         var result = [[Int]]()
-        var candidate = [Int]()
         
-        backtracking(&result, &candidate, candidates.sorted(), target, 0)
+        
+        backtracking(candidates.sorted(), &result, [], target, 0)
         
         return result
     }
     
-    private func backtracking(_ result: inout [[Int]], _ candidate: inout [Int], _ candidates:[Int], _ remain:Int, _ start:Int) {
-        if remain < 0 {
+    
+//     subtrack a candid
+    private func backtracking(_ candidates: [Int], _ result: inout [[Int]], _ combination:[Int], _ target:Int, _ start:Int) {
+        if start < 0 {
             return
-        } else if remain == 0 {
-            result.append(candidate)
+        } else if target == 0 {
+            result.append(combination) // find one and put into result
+            return
         } else {
+            
+            var combination = combination
             for i in start..<candidates.count {
-                candidate.append(candidates[i])
-                backtracking(&result, &candidate, candidates, remain - candidates[i], i)
-                candidate.removeLast()
+                guard target >= candidates[i] else { return }
+                
+                if i != start && candidates[i] == candidates[i-1] {
+                    continue // skip the same candidate been used
+                }
+                
+                combination.append(candidates[i])
+                backtracking(candidates, &result, combination, target - candidates[i], i + 1)
+                combination.removeLast()
+                
             }
         }
     }
-    
     
 }
