@@ -1128,48 +1128,71 @@ public class ListNode {
 //}
 
 
-class Solution {
-    func firstMissingPositive(_ nums: [Int]) -> Int {
+//class Solution {
+//    func firstMissingPositive(_ nums: [Int]) -> Int {
+//
+//        var status = [Int].init(repeating: 0, count: nums.count)
+//
+//        nums.forEach { (num) in
+//            if num > 0 && num <= nums.count
+//                      {
+//                          status[num-1] = num
+//                      }
+//
+//
+//        }
+//
+//
+//        for i in 0..<status.count {
+//            if status[i] == 0 {
+//                return i+1
+//            }
+//        }
+//
+//        return status.count + 1
+//    }
+//}
+//
+//class Solution {
+//    func firstMissingPositive(_ nums: [Int]) -> Int {
+//        guard nums.isEmpty == false else { return 1 }
+//
+//        var set = Set(nums)
+//        var index = 1
+//        var max = nums.max() ?? 0
+//        if max <= 0 {
+//            return 1
+//        }
+//
+//        while index < max {
+//            if !set.contains(index) {
+//                return index
+//            }
+//            index += 1
+//        }
+//        return max + 1
+//    }
+//}
 
-        var status = [Int].init(repeating: 0, count: nums.count)
-        
-        nums.forEach { (num) in
-            if num > 0 && num <= nums.count
-                      {
-                          status[num-1] = num
-                      }
-                      
-                      
-        }
-        
-        
-        for i in 0..<status.count {
-            if status[i] == 0 {
-                return i+1
+
+class Solution {
+    func trap(_ heights: [Int]) -> Int {
+        var left = 0
+        var right = heights.count - 1
+        var level = 0
+        var water = 0
+        while left < right {
+            level = max(level, min(heights[left], heights[right]))
+            if heights[left] > heights[right] {
+                water += max(0, (level - heights[right]))
+                right -= 1
+            } else {
+                water += max(0, (level - heights[left]))
+                left += 1
             }
         }
+        return water
         
-        return status.count + 1
     }
-}
-
-class Solution {
-    func firstMissingPositive(_ nums: [Int]) -> Int {
-        guard nums.isEmpty == false else { return 1 }
-        
-        var set = Set(nums)
-        var index = 1
-        var max = nums.max() ?? 0
-        if max <= 0 {
-            return 1
-        }
-        
-        while index < max {
-            if !set.contains(index) {
-                return index
-            }
-            index += 1
-        }
-        return max + 1
-    }
+ 
 }
