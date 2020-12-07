@@ -1088,41 +1088,67 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    func combinationSum2(_ candidates: [Int], _ target: Int) -> [[Int]] {
+//        guard !candidates.isEmpty else { return [] }
+//        var result = [[Int]]()
+//        
+//        
+//        backtracking(candidates.sorted(), &result, [], target, 0)
+//        
+//        return result
+//    }
+//    
+//    
+////     subtrack a candid
+//    private func backtracking(_ candidates: [Int], _ result: inout [[Int]], _ combination:[Int], _ target:Int, _ start:Int) {
+//        if start < 0 {
+//            return
+//        } else if target == 0 {
+//            result.append(combination) // find one and put into result
+//            return
+//        } else {
+//            
+//            var combination = combination
+//            for i in start..<candidates.count {
+//                guard target >= candidates[i] else { return }
+//                
+//                if i != start && candidates[i] == candidates[i-1] {
+//                    continue // skip the same candidate been used
+//                }
+//                
+//                combination.append(candidates[i])
+//                backtracking(candidates, &result, combination, target - candidates[i], i + 1)
+//                combination.removeLast()
+//                
+//            }
+//        }
+//    }
+//    
+//}
+
+
 class Solution {
-    func combinationSum2(_ candidates: [Int], _ target: Int) -> [[Int]] {
-        guard !candidates.isEmpty else { return [] }
-        var result = [[Int]]()
+    func firstMissingPositive(_ nums: [Int]) -> Int {
+
+        var status = [Int].init(repeating: 0, count: nums.count)
+        
+        nums.forEach { (num) in
+            if num > 0 && num <= nums.count
+                      {
+                          status[num-1] = num
+                      }
+                      
+                      
+        }
         
         
-        backtracking(candidates.sorted(), &result, [], target, 0)
-        
-        return result
-    }
-    
-    
-//     subtrack a candid
-    private func backtracking(_ candidates: [Int], _ result: inout [[Int]], _ combination:[Int], _ target:Int, _ start:Int) {
-        if start < 0 {
-            return
-        } else if target == 0 {
-            result.append(combination) // find one and put into result
-            return
-        } else {
-            
-            var combination = combination
-            for i in start..<candidates.count {
-                guard target >= candidates[i] else { return }
-                
-                if i != start && candidates[i] == candidates[i-1] {
-                    continue // skip the same candidate been used
-                }
-                
-                combination.append(candidates[i])
-                backtracking(candidates, &result, combination, target - candidates[i], i + 1)
-                combination.removeLast()
-                
+        for i in 0..<status.count {
+            if status[i] == 0 {
+                return i+1
             }
         }
+        
+        return status.count + 1
     }
-    
 }
