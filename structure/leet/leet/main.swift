@@ -1092,14 +1092,14 @@ public class ListNode {
 //    func combinationSum2(_ candidates: [Int], _ target: Int) -> [[Int]] {
 //        guard !candidates.isEmpty else { return [] }
 //        var result = [[Int]]()
-//        
-//        
+//
+//
 //        backtracking(candidates.sorted(), &result, [], target, 0)
-//        
+//
 //        return result
 //    }
-//    
-//    
+//
+//
 ////     subtrack a candid
 //    private func backtracking(_ candidates: [Int], _ result: inout [[Int]], _ combination:[Int], _ target:Int, _ start:Int) {
 //        if start < 0 {
@@ -1108,23 +1108,23 @@ public class ListNode {
 //            result.append(combination) // find one and put into result
 //            return
 //        } else {
-//            
+//
 //            var combination = combination
 //            for i in start..<candidates.count {
 //                guard target >= candidates[i] else { return }
-//                
+//
 //                if i != start && candidates[i] == candidates[i-1] {
 //                    continue // skip the same candidate been used
 //                }
-//                
+//
 //                combination.append(candidates[i])
 //                backtracking(candidates, &result, combination, target - candidates[i], i + 1)
 //                combination.removeLast()
-//                
+//
 //            }
 //        }
 //    }
-//    
+//
 //}
 
 
@@ -1150,5 +1150,26 @@ class Solution {
         }
         
         return status.count + 1
+    }
+}
+
+class Solution {
+    func firstMissingPositive(_ nums: [Int]) -> Int {
+        guard nums.isEmpty == false else { return 1 }
+        
+        var set = Set(nums)
+        var index = 1
+        var max = nums.max() ?? 0
+        if max <= 0 {
+            return 1
+        }
+        
+        while index < max {
+            if !set.contains(index) {
+                return index
+            }
+            index += 1
+        }
+        return max + 1
     }
 }
