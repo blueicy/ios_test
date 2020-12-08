@@ -1175,24 +1175,50 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    func trap(_ heights: [Int]) -> Int {
+//        var left = 0
+//        var right = heights.count - 1
+//        var level = 0
+//        var water = 0
+//        while left < right {
+//            level = max(level, min(heights[left], heights[right]))
+//            if heights[left] > heights[right] {
+//                water += max(0, (level - heights[right]))
+//                right -= 1
+//            } else {
+//                water += max(0, (level - heights[left]))
+//                left += 1
+//            }
+//        }
+//        return water
+//        
+//    }
+// 
+//}
+
+//https://leetcode.com/problems/multiply-strings/discuss/562036/Swift-Explanation-Detailed-step-by-step
 class Solution {
-    func trap(_ heights: [Int]) -> Int {
-        var left = 0
-        var right = heights.count - 1
-        var level = 0
-        var water = 0
-        while left < right {
-            level = max(level, min(heights[left], heights[right]))
-            if heights[left] > heights[right] {
-                water += max(0, (level - heights[right]))
-                right -= 1
-            } else {
-                water += max(0, (level - heights[left]))
-                left += 1
+    func multiply(_ num1: String, _ num2: String) -> String {
+        var num1A = Array(num1)
+        var num2A = Array(num2)
+        var sum = [Int](repeating: 0, count: num1.count + num2.count)
+        for (i,n1) in num1A.enumerated().reversed() {
+            for (j, n2) in num2A.enumerated().reversed() {
+                guard let digit1 = n2.wholeNumberValue, let digit2 = n1.wholeNumberValue else { return ""}
+                
+                let p1 = i + j
+                let p2 = i + j + 1
+                let val = digit1 * digit2 + sum[p2]
+                sum[p2] = val % 10
+                sum[p1] += val / 10
+                
             }
         }
-        return water
+        while let firstSum = sum.first, firstSum == 0 { sum.removeFirst() }
+        let res = sum.map ({ String($0)}).joined()
+        return res.count > 0 ? res : "0"
+        
         
     }
- 
 }
