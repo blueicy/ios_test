@@ -1223,21 +1223,47 @@ public class ListNode {
 //    }
 //} 
 
+//class Solution {
+//    func jump(_ nums: [Int]) -> Int {
+//
+//        var maxPosition = 0
+//        var levelMax = 0
+//        var level = 0
+//
+//        for i in 0..<nums.count-1 {
+//            maxPosition = max(maxPosition, i+nums[i])
+//            if i == levelMax {
+//                level += 1
+//                levelMax = maxPosition
+//            }
+//        }
+//
+//        return level
+//    }
+//}
+
+
 class Solution {
-    func jump(_ nums: [Int]) -> Int {
+    func permute(_ nums: [Int]) -> [[Int]] {
+        var result = [[Int]]()
+        var nums = nums
+        recurse(0, &nums, &result)
+        return result
         
-        var maxPosition = 0
-        var levelMax = 0
-        var level = 0
-        
-        for i in 0..<nums.count-1 {
-            maxPosition = max(maxPosition, i+nums[i])
-            if i == levelMax {
-                level += 1
-                levelMax = maxPosition
-            }
+    }
+    
+    func recurse(_ first: Int, _ nums: inout[Int], _ result: inout[[Int]]) {
+        if first == nums.count {
+            result.append(nums)
+            return
         }
         
-        return level
+        for index in first..<nums.count {
+            nums.swapAt(first, index)
+            self.recurse(first+1, &nums, &result)
+            nums.swapAt(first, index)
+        }
+        
     }
+    
 }
