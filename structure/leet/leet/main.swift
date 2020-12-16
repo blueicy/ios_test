@@ -1222,3 +1222,22 @@ public class ListNode {
 //
 //    }
 //} 
+
+class Solution {
+    func jump(_ nums: [Int]) -> Int {
+        
+        var maxPosition = 0
+        var levelMax = 0
+        var level = 0
+        
+        for i in 0..<nums.count-1 {
+            maxPosition = max(maxPosition, i+nums[i])
+            if i == levelMax {
+                level += 1
+                levelMax = maxPosition
+            }
+        }
+        
+        return level
+    }
+}
