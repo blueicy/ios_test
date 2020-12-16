@@ -1243,27 +1243,68 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    func permute(_ nums: [Int]) -> [[Int]] {
+//        var result = [[Int]]()
+//        var nums = nums
+//        recurse(0, &nums, &result)
+//        return result
+//
+//    }
+//
+//    func recurse(_ first: Int, _ nums: inout[Int], _ result: inout[[Int]]) {
+//        if first == nums.count {
+//            result.append(nums)
+//            return
+//        }
+//
+//        for index in first..<nums.count {
+//            nums.swapAt(first, index)
+//            self.recurse(first+1, &nums, &result)
+//            nums.swapAt(first, index)
+//        }
+//
+//    }
+//
+//}
+
+
 class Solution {
-    func permute(_ nums: [Int]) -> [[Int]] {
-        var result = [[Int]]()
-        var nums = nums
-        recurse(0, &nums, &result)
-        return result
+    func permuteUnique(_ nums: [Int]) -> [[Int]] {
+        if nums.count == 0 {
+            return []
+        }
         
+        let nums = nums.sorted()
+        var result = [[Int]]()
+        var candidate = [Int]()
+        var visited = [Bool](repeatElement(false, count: nums.count))
+        
+        backtracking(&result, &candidate, nums, &visited)
+        
+        return result
     }
     
-    func recurse(_ first: Int, _ nums: inout[Int], _ result: inout[[Int]]) {
-        if first == nums.count {
-            result.append(nums)
+    func backtracking(_ result: inout [[Int]], _ candidate: inout [Int], _ nums: [Int], _ visited: inout [Bool]) {
+        if candidate.count == nums.count {
+            result.append(candidate)
             return
         }
         
-        for index in first..<nums.count {
-            nums.swapAt(first, index)
-            self.recurse(first+1, &nums, &result)
-            nums.swapAt(first, index)
+        for i in 0..<nums.count {
+            if visited[i] || ( i>0 && !visited[i - 1] && nums[i - 1] == nums[i]) {
+                continue
+            }
+            
+            visited[i] = true
+            candidate.append(nums[i])
+            backtracking(&result, &candidate, nums, &visited)
+            visited[i] = false
+            candidate.removeLast()
+            
+
         }
-        
+
     }
     
 }
