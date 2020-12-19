@@ -1317,28 +1317,53 @@ public class ListNode {
 //                matrix[i][j] = matrix[j][i]
 //                matrix[j][i] = t
 //            }
-//            
+//
 //            matrix[i].reverse()
 //        }
 //    }
 //}
 
+//class Solution {
+//    func groupAnagrams(_ strs: [String]) -> [[String]] {
+//        var result = [[String]]()
+//        var dict = [String:[String]]()
+//        for i in 0..<strs.count {
+//            let word = String(strs[i].sorted())
+//            if let _ = dict[word] {
+//                dict[word]!.append(strs[i])
+//            } else {
+//                dict[word] = [strs[i]]
+//            }
+//        }
+//
+//        for value in dict.values {
+//            result.append(value)
+//        }
+//        return result
+//    }
+//}
+
 class Solution {
-    func groupAnagrams(_ strs: [String]) -> [[String]] {
-        var result = [[String]]()
-        var dict = [String:[String]]()
-        for i in 0..<strs.count {
-            let word = String(strs[i].sorted())
-            if let _ = dict[word] {
-                dict[word]!.append(strs[i])
-            } else {
-                dict[word] = [strs[i]]
-            }
+    func myPow(_ x: Double, _ n: Int) -> Double {
+        let x = n < 0 ? 1/x :x
+        
+        return powHelper(x,n)
+    }
+    
+    private func powHelper(_ x:Double, _ n:Int) -> Double {
+        if n == 0 {
+            return 1
         }
         
-        for value in dict.values {
-            result.append(value)
+        let result = powHelper(x,n/2)
+        
+        if n % 2 != 0 {
+            return result * result * x
         }
-        return result
+        
+        
+        return result * result
+        
     }
+    
 }
