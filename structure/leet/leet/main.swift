@@ -1343,27 +1343,100 @@ public class ListNode {
 //    }
 //}
 
+//class Solution {
+//    func myPow(_ x: Double, _ n: Int) -> Double {
+//        let x = n < 0 ? 1/x :x
+//
+//        return powHelper(x,n)
+//    }
+//
+//    private func powHelper(_ x:Double, _ n:Int) -> Double {
+//        if n == 0 {
+//            return 1
+//        }
+//
+//        let result = powHelper(x,n/2)
+//
+//        if n % 2 != 0 {
+//            return result * result * x
+//        }
+//
+//
+//        return result * result
+//
+//    }
+//
+//}
+
+
 class Solution {
-    func myPow(_ x: Double, _ n: Int) -> Double {
-        let x = n < 0 ? 1/x :x
-        
-        return powHelper(x,n)
+    func solveNQueens(_ n: Int) -> [[String]] {
+            var result = [[String]]()
+            if n <= 0 { return result }
+            var rows = [Int](repeating: 0, count: n)
+            buildMatches(&result,&rows,0)
+            return result
     }
     
-    private func powHelper(_ x:Double, _ n:Int) -> Double {
-        if n == 0 {
-            return 1
+        func generateBoard(_ rows: inout [Int]) -> [String] {
+            var result = [String]()
+            let count = rows.count
+            
+            for row in rows {
+                var str = ""
+                for i in 0..<row {
+                    str += "."
+                }
+                str += "Q"
+                for i in (row+1)..<count {
+                    str += "."
+                }
+                result.append(str)
+            }
+            
+            return result
         }
         
-        let result = powHelper(x,n/2)
-        
-        if n % 2 != 0 {
-            return result * result * x
+        func threatCheck(_ rows: inout [Int], _ index:Int) -> Bool {
+            var threat: Bool = false
+            var checkRow = index - 1
+            while checkRow >= 0 {
+                if rows[checkRow] == rows[index] {
+                    threat = true
+                }
+                var dx = index - checkRow
+                var dy = abs(rows[index] - rows[checkRow])
+                
+                if dx == dy {
+                    threat = true
+                }
+                checkRow -= 1
+                
+                
+                
+            }
+            
+            return threat
+            
         }
         
         
-        return result * result
+        func buildMatches(_ result: inout [[String]], _ rows: inout[Int], _ index:Int) {
+            if index >= rows.count {
+                result.append(generateBoard(&rows))
+                return
+            }
+            
+            var size = rows.count
+            
+            for i in 0..<size {
+                rows[index] = i
+                if threatCheck(&rows, index) == false {
+                    buildMatches(&result, &rows, index + 1)
+                }
+            }
+
+        }
         
-    }
     
 }
