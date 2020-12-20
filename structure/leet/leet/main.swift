@@ -1437,6 +1437,78 @@ class Solution {
             }
 
         }
+    
+}
+
+
+class Solution {
+    func totalNQueens(_ n: Int) -> Int {
+               var result = [[String]]()
+            if n <= 0 { return 0 }
+            var rows = [Int](repeating: 0, count: n)
+            buildMatches(&result,&rows,0)
+            return result.count
+    }
+    
+        func generateBoard(_ rows: inout [Int]) -> [String] {
+            var result = [String]()
+            let count = rows.count
+            
+            for row in rows {
+                var str = ""
+                for i in 0..<row {
+                    str += "."
+                }
+                str += "Q"
+                for i in (row+1)..<count {
+                    str += "."
+                }
+                result.append(str)
+            }
+            
+            return result
+        }
+        
+        func threatCheck(_ rows: inout [Int], _ index:Int) -> Bool {
+            var threat: Bool = false
+            var checkRow = index - 1
+            while checkRow >= 0 {
+                if rows[checkRow] == rows[index] {
+                    threat = true
+                }
+                var dx = index - checkRow
+                var dy = abs(rows[index] - rows[checkRow])
+                
+                if dx == dy {
+                    threat = true
+                }
+                checkRow -= 1
+                
+                
+                
+            }
+            
+            return threat
+            
+        }
+        
+        
+        func buildMatches(_ result: inout [[String]], _ rows: inout[Int], _ index:Int) {
+            if index >= rows.count {
+                result.append(generateBoard(&rows))
+                return
+            }
+            
+            var size = rows.count
+            
+            for i in 0..<size {
+                rows[index] = i
+                if threatCheck(&rows, index) == false {
+                    buildMatches(&result, &rows, index + 1)
+                }
+            }
+
+        }
         
     
 }
