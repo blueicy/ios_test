@@ -1377,11 +1377,11 @@ public class ListNode {
 //            buildMatches(&result,&rows,0)
 //            return result
 //    }
-//    
+//
 //        func generateBoard(_ rows: inout [Int]) -> [String] {
 //            var result = [String]()
 //            let count = rows.count
-//            
+//
 //            for row in rows {
 //                var str = ""
 //                for i in 0..<row {
@@ -1393,10 +1393,10 @@ public class ListNode {
 //                }
 //                result.append(str)
 //            }
-//            
+//
 //            return result
 //        }
-//        
+//
 //        func threatCheck(_ rows: inout [Int], _ index:Int) -> Bool {
 //            var threat: Bool = false
 //            var checkRow = index - 1
@@ -1406,29 +1406,29 @@ public class ListNode {
 //                }
 //                var dx = index - checkRow
 //                var dy = abs(rows[index] - rows[checkRow])
-//                
+//
 //                if dx == dy {
 //                    threat = true
 //                }
 //                checkRow -= 1
-//                
-//                
-//                
+//
+//
+//
 //            }
-//            
+//
 //            return threat
-//            
+//
 //        }
-//        
-//        
+//
+//
 //        func buildMatches(_ result: inout [[String]], _ rows: inout[Int], _ index:Int) {
 //            if index >= rows.count {
 //                result.append(generateBoard(&rows))
 //                return
 //            }
-//            
+//
 //            var size = rows.count
-//            
+//
 //            for i in 0..<size {
 //                rows[index] = i
 //                if threatCheck(&rows, index) == false {
@@ -1437,7 +1437,7 @@ public class ListNode {
 //            }
 //
 //        }
-//    
+//
 //}
 //
 //
@@ -1449,11 +1449,11 @@ public class ListNode {
 //            buildMatches(&result,&rows,0)
 //            return result.count
 //    }
-//    
+//
 //        func generateBoard(_ rows: inout [Int]) -> [String] {
 //            var result = [String]()
 //            let count = rows.count
-//            
+//
 //            for row in rows {
 //                var str = ""
 //                for i in 0..<row {
@@ -1465,10 +1465,10 @@ public class ListNode {
 //                }
 //                result.append(str)
 //            }
-//            
+//
 //            return result
 //        }
-//        
+//
 //        func threatCheck(_ rows: inout [Int], _ index:Int) -> Bool {
 //            var threat: Bool = false
 //            var checkRow = index - 1
@@ -1478,29 +1478,29 @@ public class ListNode {
 //                }
 //                var dx = index - checkRow
 //                var dy = abs(rows[index] - rows[checkRow])
-//                
+//
 //                if dx == dy {
 //                    threat = true
 //                }
 //                checkRow -= 1
-//                
-//                
-//                
+//
+//
+//
 //            }
-//            
+//
 //            return threat
-//            
+//
 //        }
-//        
-//        
+//
+//
 //        func buildMatches(_ result: inout [[String]], _ rows: inout[Int], _ index:Int) {
 //            if index >= rows.count {
 //                result.append(generateBoard(&rows))
 //                return
 //            }
-//            
+//
 //            var size = rows.count
-//            
+//
 //            for i in 0..<size {
 //                rows[index] = i
 //                if threatCheck(&rows, index) == false {
@@ -1509,44 +1509,57 @@ public class ListNode {
 //            }
 //
 //        }
+//
+//
+//}
+
+
+//class Solution {
+//    
+//    var total:Int = 0
+//    
+//    func totalNQueens(_ n: Int) -> Int {
+//        var arr:[Int] = Array(repeating:0, count: n)
+//        helper(&arr, 0)
+//        return total
+//    }
+//    
+//    func helper(_ arr: inout [Int],_ current: Int) {
+//        if current == arr.count {
+//            total += 1
+//            return
+//        }
 //        
+//        for i in 0..<arr.count {
+//            if !hasConflict(&arr, current, i) {
+//                arr[current] = i
+//                helper(&arr, current+1)
+//            }
+//        }
+//        
+//    }
+//    
+//    func hasConflict(_ arr:inout[Int], _ row:Int, _ col:Int) -> Bool {
+//        for i in 0..<row {
+//            if arr[i] == col || arr[i] + i == col + row || arr[i] - i == col - row {
+//                return true
+//            }
+//        }
+//        return false
+//    }
+//    
 //    
 //}
 
 
 class Solution {
-    
-    var total:Int = 0
-    
-    func totalNQueens(_ n: Int) -> Int {
-        var arr:[Int] = Array(repeating:0, count: n)
-        helper(&arr, 0)
-        return total
-    }
-    
-    func helper(_ arr: inout [Int],_ current: Int) {
-        if current == arr.count {
-            total += 1
-            return
+    func maxSubArray(_ nums: [Int]) -> Int {
+        var m = 0
+        var result = Int.min
+        for i in 0..<nums.count {
+            m = max(nums[i], nums[i] + m)
+            result = max(result, m)
         }
-        
-        for i in 0..<arr.count {
-            if !hasConflict(&arr, current, i) {
-                arr[current] = i
-                helper(&arr, current+1)
-            }
-        }
-        
+        return result
     }
-    
-    func hasConflict(_ arr:inout[Int], _ row:Int, _ col:Int) -> Bool {
-        for i in 0..<row {
-            if arr[i] == col || arr[i] + i == col + row || arr[i] - i == col - row {
-                return true
-            }
-        }
-        return false
-    }
-    
-    
 }
