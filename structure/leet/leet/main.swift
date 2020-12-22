@@ -1515,30 +1515,30 @@ public class ListNode {
 
 
 //class Solution {
-//    
+//
 //    var total:Int = 0
-//    
+//
 //    func totalNQueens(_ n: Int) -> Int {
 //        var arr:[Int] = Array(repeating:0, count: n)
 //        helper(&arr, 0)
 //        return total
 //    }
-//    
+//
 //    func helper(_ arr: inout [Int],_ current: Int) {
 //        if current == arr.count {
 //            total += 1
 //            return
 //        }
-//        
+//
 //        for i in 0..<arr.count {
 //            if !hasConflict(&arr, current, i) {
 //                arr[current] = i
 //                helper(&arr, current+1)
 //            }
 //        }
-//        
+//
 //    }
-//    
+//
 //    func hasConflict(_ arr:inout[Int], _ row:Int, _ col:Int) -> Bool {
 //        for i in 0..<row {
 //            if arr[i] == col || arr[i] + i == col + row || arr[i] - i == col - row {
@@ -1547,19 +1547,45 @@ public class ListNode {
 //        }
 //        return false
 //    }
-//    
-//    
+//
+//
+//}
+
+
+//class Solution {
+//    func maxSubArray(_ nums: [Int]) -> Int {
+//        var m = 0
+//        var result = Int.min
+//        for i in 0..<nums.count {
+//            m = max(nums[i], nums[i] + m)
+//            result = max(result, m)
+//        }
+//        return result
+//    }
 //}
 
 
 class Solution {
-    func maxSubArray(_ nums: [Int]) -> Int {
-        var m = 0
-        var result = Int.min
-        for i in 0..<nums.count {
-            m = max(nums[i], nums[i] + m)
-            result = max(result, m)
-        }
-        return result
+    func spiralOrder(_ matrix: [[Int]]) -> [Int] {
+        var res = [Int](), matrix = matrix
+        helper(&matrix, &res, 0, 0, 0)
+        return res
     }
+    
+    func helper(_ matrix: inout [[Int]], _ res: inout [Int], _ x: Int, _ y: Int, _ direc: Int) {
+        if x < 0 || x >= matrix.count || y < 0 || y >= matrix[x].count || matrix[x][y] == -987654 { return }
+        res += [ matrix[x][y] ]
+        matrix[x][y] = -987654
+        if direc == 0 {
+            helper(&matrix, &res, x, y+1, 0) // right
+            helper(&matrix, &res, x+1, y, 0) // down
+            helper(&matrix, &res, x, y-1, 0) // left
+            helper(&matrix, &res, x-1, y, 1) // up
+        }
+        if direc == 1 {
+            helper(&matrix, &res, x-1, y, 1) // up
+            helper(&matrix, &res, x, y+1, 0) // right
+        }
+    }
+    
 }
