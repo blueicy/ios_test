@@ -1565,27 +1565,43 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    func spiralOrder(_ matrix: [[Int]]) -> [Int] {
+//        var res = [Int](), matrix = matrix
+//        helper(&matrix, &res, 0, 0, 0)
+//        return res
+//    }
+//
+//    func helper(_ matrix: inout [[Int]], _ res: inout [Int], _ x: Int, _ y: Int, _ direc: Int) {
+//        if x < 0 || x >= matrix.count || y < 0 || y >= matrix[x].count || matrix[x][y] == -987654 { return }
+//        res += [ matrix[x][y] ]
+//        matrix[x][y] = -987654
+//        if direc == 0 {
+//            helper(&matrix, &res, x, y+1, 0) // right
+//            helper(&matrix, &res, x+1, y, 0) // down
+//            helper(&matrix, &res, x, y-1, 0) // left
+//            helper(&matrix, &res, x-1, y, 1) // up
+//        }
+//        if direc == 1 {
+//            helper(&matrix, &res, x-1, y, 1) // up
+//            helper(&matrix, &res, x, y+1, 0) // right
+//        }
+//    }
+//
+//}
+
+
 class Solution {
-    func spiralOrder(_ matrix: [[Int]]) -> [Int] {
-        var res = [Int](), matrix = matrix
-        helper(&matrix, &res, 0, 0, 0)
-        return res
-    }
-    
-    func helper(_ matrix: inout [[Int]], _ res: inout [Int], _ x: Int, _ y: Int, _ direc: Int) {
-        if x < 0 || x >= matrix.count || y < 0 || y >= matrix[x].count || matrix[x][y] == -987654 { return }
-        res += [ matrix[x][y] ]
-        matrix[x][y] = -987654
-        if direc == 0 {
-            helper(&matrix, &res, x, y+1, 0) // right
-            helper(&matrix, &res, x+1, y, 0) // down
-            helper(&matrix, &res, x, y-1, 0) // left
-            helper(&matrix, &res, x-1, y, 1) // up
+    func canJump(_ nums: [Int]) -> Bool {
+        let count = nums.count
+        
+        var maxJump = 0
+        for i in nums.indices {
+            if i <= maxJump {
+                maxJump = max(maxJump, i + nums[i])
+            }
         }
-        if direc == 1 {
-            helper(&matrix, &res, x-1, y, 1) // up
-            helper(&matrix, &res, x, y+1, 0) // right
-        }
+        
+        return maxJump >= nums.count - 1
     }
-    
 }
