@@ -1607,36 +1607,70 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    func merge(_ intervals: [[Int]]) -> [[Int]] {
+//        if intervals.count < 1 {
+//            return intervals
+//        }
+//        var intervals = intervals.sorted{$0[0] < $1[0]}
+//        var results = [intervals[0]]
+//
+//        for i in 1..<intervals.count {
+//            let interval = intervals[i]
+//            let lastIndex = results.count - 1
+//
+//            if overlap(results[lastIndex], interval){
+//                results[lastIndex] = [min(results[lastIndex][0], interval[0]), max(results[lastIndex][1], interval[1])]
+//            } else {
+//                results.append(interval)
+//            }
+//
+//        }
+//
+//        return results
+//
+//
+//    }
+//
+//
+//    func overlap(_ a:[Int], _ b: [Int]) -> Bool {
+//        return !(b[0] > a[1])
+//    }
+//
+//
+//
+//}
+
+
 class Solution {
-    func merge(_ intervals: [[Int]]) -> [[Int]] {
-        if intervals.count < 1 {
-            return intervals
-        }
-        var intervals = intervals.sorted{$0[0] < $1[0]}
-        var results = [intervals[0]]
+    func insert(_ intervals: [[Int]], _ newInterval: [Int]) -> [[Int]] {
+        var newInterval = newInterval
+        var result = [[Int]]()
         
-        for i in 1..<intervals.count {
-            let interval = intervals[i]
-            let lastIndex = results.count - 1
-            
-            if overlap(results[lastIndex], interval){
-                results[lastIndex] = [min(results[lastIndex][0], interval[0]), max(results[lastIndex][1], interval[1])]
-            } else {
-                results.append(interval)
-            }
-            
+        var i = 0, n = intervals.count
+        
+        while i < n && intervals[i][1] < newInterval[0] {
+            result.append(intervals[i])
+            i += 1
         }
         
-        return results
+        
+        var mergeStart = newInterval[0]
+        var mergeEnd = newInterval[1]
+        while i < n && intervals[i][0] <= newInterval[1] {
+            mergeStart = min(intervals[i][0], mergeStart)
+            mergeEnd = max(intervals[i][1], mergeEnd)
+            i += 1
+        }
         
         
+        result.append([mergeStart, mergeEnd])
+        
+        while i < n {
+            result.append(intervals[i])
+            i += 1
+        }
+        return result
+        
     }
-    
-    
-    func overlap(_ a:[Int], _ b: [Int]) -> Bool {
-        return !(b[0] > a[1])
-    }
-    
-    
-    
 }
