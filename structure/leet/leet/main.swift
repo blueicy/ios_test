@@ -1642,35 +1642,47 @@ public class ListNode {
 //}
 
 
+//class Solution {
+//    func insert(_ intervals: [[Int]], _ newInterval: [Int]) -> [[Int]] {
+//        var newInterval = newInterval
+//        var result = [[Int]]()
+//
+//        var i = 0, n = intervals.count
+//
+//        while i < n && intervals[i][1] < newInterval[0] {
+//            result.append(intervals[i])
+//            i += 1
+//        }
+//
+//
+//        var mergeStart = newInterval[0]
+//        var mergeEnd = newInterval[1]
+//        while i < n && intervals[i][0] <= newInterval[1] {
+//            mergeStart = min(intervals[i][0], mergeStart)
+//            mergeEnd = max(intervals[i][1], mergeEnd)
+//            i += 1
+//        }
+//
+//
+//        result.append([mergeStart, mergeEnd])
+//
+//        while i < n {
+//            result.append(intervals[i])
+//            i += 1
+//        }
+//        return result
+//
+//    }
+//}
+
+
 class Solution {
-    func insert(_ intervals: [[Int]], _ newInterval: [Int]) -> [[Int]] {
-        var newInterval = newInterval
-        var result = [[Int]]()
-        
-        var i = 0, n = intervals.count
-        
-        while i < n && intervals[i][1] < newInterval[0] {
-            result.append(intervals[i])
-            i += 1
-        }
+    func lengthOfLastWord(_ s: String) -> Int {
+        guard s != "" else { return 0 }
+        var parts = s.split(separator: " ")
+        parts.last?.count
         
         
-        var mergeStart = newInterval[0]
-        var mergeEnd = newInterval[1]
-        while i < n && intervals[i][0] <= newInterval[1] {
-            mergeStart = min(intervals[i][0], mergeStart)
-            mergeEnd = max(intervals[i][1], mergeEnd)
-            i += 1
-        }
-        
-        
-        result.append([mergeStart, mergeEnd])
-        
-        while i < n {
-            result.append(intervals[i])
-            i += 1
-        }
-        return result
-        
+        return parts.last?.count ?? 0
     }
 }
