@@ -1681,62 +1681,94 @@ public class ListNode {
 //        guard s != "" else { return 0 }
 //        var parts = s.split(separator: " ")
 //        parts.last?.count
-//        
-//        
+//
+//
 //        return parts.last?.count ?? 0
 //    }
 //}
 
+//class Solution {
+//
+//
+//func generateMatrix(_ n: Int) -> [[Int]] {
+//
+//    enum Direction {
+//        case right
+//        case bottom
+//        case left
+//        case top
+//    }
+//
+//    var matrix = Array(repeating: Array(repeating: 0, count: n), count: n)
+//    var row = 0
+//    var column = 0
+//    var direction: Direction = .right
+//    for i in 1...n*n {
+//        matrix[row][column] = i
+//        switch direction {
+//        case .right:
+//            if column+1 < n && matrix[row][column+1] == 0 {
+//                column += 1
+//            }else{
+//                direction = .bottom
+//                row += 1
+//            }
+//        case .bottom:
+//            if row+1 < n && matrix[row+1][column] == 0 {
+//                row += 1
+//            }else{
+//                direction = .left
+//                column -= 1
+//            }
+//        case .left:
+//            if column-1 >= 0 && matrix[row][column-1] == 0 {
+//                column -= 1
+//            }else{
+//                direction = .top
+//                row -= 1
+//            }
+//        case .top:
+//            if row-1 >= 0 && matrix[row-1][column] == 0 {
+//                row -= 1
+//            }else{
+//                direction = .right
+//                column += 1
+//            }
+//        }
+//    }
+//    return matrix
+//}
+//    
+//}
+
 class Solution {
-
-
-func generateMatrix(_ n: Int) -> [[Int]] {
-
-    enum Direction {
-        case right
-        case bottom
-        case left
-        case top
-    }
-
-    var matrix = Array(repeating: Array(repeating: 0, count: n), count: n)
-    var row = 0
-    var column = 0
-    var direction: Direction = .right
-    for i in 1...n*n {
-        matrix[row][column] = i
-        switch direction {
-        case .right:
-            if column+1 < n && matrix[row][column+1] == 0 {
-                column += 1
-            }else{
-                direction = .bottom
-                row += 1
+    func getPermutation(_ n: Int, _ k: Int) -> String {
+        guard n > 1 else { return "1" }
+        
+        var set: [Int] = (1...n).map { $0 }
+        var q = 0
+        var r = k
+        var result = ""
+        for i in 0..<(n-1) {
+            let fn = factorial(n - i - 1)
+            q = r / fn
+            r = r % fn
+            if r == 0 {
+                q -= 1
+                r = fn
             }
-        case .bottom:
-            if row+1 < n && matrix[row+1][column] == 0 {
-                row += 1
-            }else{
-                direction = .left
-                column -= 1
-            }
-        case .left:
-            if column-1 >= 0 && matrix[row][column-1] == 0 {
-                column -= 1
-            }else{
-                direction = .top
-                row -= 1
-            }
-        case .top:
-            if row-1 >= 0 && matrix[row-1][column] == 0 {
-                row -= 1
-            }else{
-                direction = .right
-                column += 1
-            }
+            result += String(set[q])
+            set.remove(at: q)
         }
+        result += String(set[0])
+        return result
     }
-    return matrix
-}
     
+    func factorial(_ n: Int) -> Int {
+        var result = 1
+        for i in 1...n {
+            result *= i
+        }
+        return result
+    }
 }
