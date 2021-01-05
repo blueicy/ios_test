@@ -1741,34 +1741,67 @@ public class ListNode {
 //
 //}
 
+//class Solution {
+//    func getPermutation(_ n: Int, _ k: Int) -> String {
+//        guard n > 1 else { return "1" }
+//        
+//        var set: [Int] = (1...n).map { $0 }
+//        var q = 0
+//        var r = k
+//        var result = ""
+//        for i in 0..<(n-1) {
+//            let fn = factorial(n - i - 1)
+//            q = r / fn
+//            r = r % fn
+//            if r == 0 {
+//                q -= 1
+//                r = fn
+//            }
+//            result += String(set[q])
+//            set.remove(at: q)
+//        }
+//        result += String(set[0])
+//        return result
+//    }
+//    
+//    func factorial(_ n: Int) -> Int {
+//        var result = 1
+//        for i in 1...n {
+//            result *= i
+//        }
+//        return result
+//    }
+//}
+
+
 class Solution {
-    func getPermutation(_ n: Int, _ k: Int) -> String {
-        guard n > 1 else { return "1" }
+    func rotateRight(_ head: ListNode?, _ k: Int) -> ListNode? {
+        if head == nil || head?.next == nil {
+            return head
+        }
         
-        var set: [Int] = (1...n).map { $0 }
-        var q = 0
-        var r = k
-        var result = ""
-        for i in 0..<(n-1) {
-            let fn = factorial(n - i - 1)
-            q = r / fn
-            r = r % fn
-            if r == 0 {
-                q -= 1
-                r = fn
-            }
-            result += String(set[q])
-            set.remove(at: q)
+        let dummy = ListNode(0)
+        var fast: ListNode? = dummy
+        var slow: ListNode? = dummy
+        var i = 0
+        dummy.next = head
+        
+        while fast?.next != nil {
+            fast = fast?.next
+            i += 1
         }
-        result += String(set[0])
-        return result
-    }
-    
-    func factorial(_ n: Int) -> Int {
-        var result = 1
-        for i in 1...n {
-            result *= i
+        
+        for _ in stride(from: (i - k % i), to: 0, by: -1) {
+            slow = slow?.next
         }
-        return result
+        fast?.next = dummy.next
+        dummy.next = slow?.next
+        slow?.next = nil
+        
+        return dummy.next
+        
+        
+        
+        
     }
 }
