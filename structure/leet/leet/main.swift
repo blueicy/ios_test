@@ -1744,7 +1744,7 @@ public class ListNode {
 //class Solution {
 //    func getPermutation(_ n: Int, _ k: Int) -> String {
 //        guard n > 1 else { return "1" }
-//        
+//
 //        var set: [Int] = (1...n).map { $0 }
 //        var q = 0
 //        var r = k
@@ -1763,7 +1763,7 @@ public class ListNode {
 //        result += String(set[0])
 //        return result
 //    }
-//    
+//
 //    func factorial(_ n: Int) -> Int {
 //        var result = 1
 //        for i in 1...n {
