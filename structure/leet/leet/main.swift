@@ -1773,35 +1773,54 @@ public class ListNode {
 //    }
 //}
 
+//
+//class Solution {
+//    func rotateRight(_ head: ListNode?, _ k: Int) -> ListNode? {
+//        if head == nil || head?.next == nil {
+//            return head
+//        }
+//        
+//        let dummy = ListNode(0)
+//        var fast: ListNode? = dummy
+//        var slow: ListNode? = dummy
+//        var i = 0
+//        dummy.next = head
+//        
+//        while fast?.next != nil {
+//            fast = fast?.next
+//            i += 1
+//        }
+//        
+//        for _ in stride(from: (i - k % i), to: 0, by: -1) {
+//            slow = slow?.next
+//        }
+//        fast?.next = dummy.next
+//        dummy.next = slow?.next
+//        slow?.next = nil
+//        
+//        return dummy.next
+//        
+//        
+//        
+//        
+//    }
+//}
 
 class Solution {
-    func rotateRight(_ head: ListNode?, _ k: Int) -> ListNode? {
-        if head == nil || head?.next == nil {
-            return head
+    func uniquePaths(_ m: Int, _ n: Int) -> Int {
+        if m == 0 || n == 0 {
+            return 0
         }
         
-        let dummy = ListNode(0)
-        var fast: ListNode? = dummy
-        var slow: ListNode? = dummy
-        var i = 0
-        dummy.next = head
+        var dp = Array(repeating: Array(repeating:0, count:n+1), count: m+1)
+        dp[m-1][n-1] = 1
         
-        while fast?.next != nil {
-            fast = fast?.next
-            i += 1
+        for row in (0..<m).reversed() {
+            for col in (0..<n).reversed() {
+                let paths = dp[row+1][col] + dp[row][col+1]
+                dp[row][col] += paths
+            }
         }
-        
-        for _ in stride(from: (i - k % i), to: 0, by: -1) {
-            slow = slow?.next
-        }
-        fast?.next = dummy.next
-        dummy.next = slow?.next
-        slow?.next = nil
-        
-        return dummy.next
-        
-        
-        
-        
+        return dp[0][0]
     }
 }
