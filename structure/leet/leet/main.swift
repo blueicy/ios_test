@@ -1779,48 +1779,91 @@ public class ListNode {
 //        if head == nil || head?.next == nil {
 //            return head
 //        }
-//        
+//
 //        let dummy = ListNode(0)
 //        var fast: ListNode? = dummy
 //        var slow: ListNode? = dummy
 //        var i = 0
 //        dummy.next = head
-//        
+//
 //        while fast?.next != nil {
 //            fast = fast?.next
 //            i += 1
 //        }
-//        
+//
 //        for _ in stride(from: (i - k % i), to: 0, by: -1) {
 //            slow = slow?.next
 //        }
 //        fast?.next = dummy.next
 //        dummy.next = slow?.next
 //        slow?.next = nil
-//        
+//
 //        return dummy.next
-//        
-//        
-//        
-//        
+//
+//
+//
+//
+//    }
+//}
+
+//class Solution {
+//    func uniquePaths(_ m: Int, _ n: Int) -> Int {
+//        if m == 0 || n == 0 {
+//            return 0
+//        }
+//
+//        var dp = Array(repeating: Array(repeating:0, count:n+1), count: m+1)
+//        dp[m-1][n-1] = 1
+//
+//        for row in (0..<m).reversed() {
+//            for col in (0..<n).reversed() {
+//                let paths = dp[row+1][col] + dp[row][col+1]
+//                dp[row][col] += paths
+//            }
+//        }
+//        return dp[0][0]
 //    }
 //}
 
 class Solution {
-    func uniquePaths(_ m: Int, _ n: Int) -> Int {
-        if m == 0 || n == 0 {
-            return 0
-        }
+    func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
+        let rows = obstacleGrid.count
+        guard rows > 0 else { return 0 }
+        let cols = obstacleGrid[0].count
+        guard cols > 0 else { return 0 }
         
-        var dp = Array(repeating: Array(repeating:0, count:n+1), count: m+1)
-        dp[m-1][n-1] = 1
+        guard obstacleGrid[0][0] != 1 && obstacleGrid[rows - 1][cols - 1] != 1 else { return 0 }
         
-        for row in (0..<m).reversed() {
-            for col in (0..<n).reversed() {
-                let paths = dp[row+1][col] + dp[row][col+1]
-                dp[row][col] += paths
+        var dp = Array(repeating: Array(repeating: 0 , count:cols), count: rows)
+        dp[0][0] = 1
+        
+        for i in 1..<rows {
+            if obstacleGrid[i][0] == 1 {
+                dp[i][0] = 0
+            } else {
+                dp[i][0] = dp[i - 1][0]
             }
         }
-        return dp[0][0]
+        
+        
+        for i in 1..<cols {
+            if obstacleGrid[0][i] == 1 {
+                dp[0][i] = 0
+            }else {
+                dp[0][i] = dp[0][i-1]
+            }
+        }
+        
+        for i in 1..<rows {
+            for j in 1..<cols {
+                if obstacleGrid[i][j] != 1{
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+                }
+            }
+        }
+        
+        return dp[rows - 1][cols - 1]
+        
+        
     }
 }
